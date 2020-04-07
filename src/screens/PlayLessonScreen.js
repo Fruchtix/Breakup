@@ -5,7 +5,7 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 import { Audio } from 'expo-av';
-
+import {Feather as Icon} from '@expo/vector-icons'
 
 export default class PlayLessonScreen extends Component {
     constructor() {
@@ -43,9 +43,12 @@ export default class PlayLessonScreen extends Component {
             playThroughEarpieceAndroid: true
           });
 
+        const lessonId = this.props.navigation.getParam("id")
+        const weekId = this.props.navigation.getParam("weekId")
+
         // Get Audio
         var storage = firebase.storage();
-        var pathReference = storage.ref(`Audios/${this.props.weekid}/${this.props.id}.wav`);
+        var pathReference = storage.ref(`Audios/${weekId}/${lessonId}.wav`);
         pathReference.getDownloadURL().then((url) => {
         //   console.log(url)
           if(this.didMount) {
@@ -209,8 +212,6 @@ export default class PlayLessonScreen extends Component {
     render() {
         const headline = this.props.navigation.getParam("headline")
         const description = this.props.navigation.getParam("description")
-        const lessonId = this.props.navigation.getParam("id")
-        const weekId = this.props.navigation.getParam("weekId")
 
         return (
             <ImageBackground style={styles.safeArea} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}} >
@@ -218,7 +219,7 @@ export default class PlayLessonScreen extends Component {
                     <View style={styles.header}>
                         <TouchableWithoutFeedback
                             hitSlop={{top: 7, right: 7, left: 7, bottom: 7}}
-                            onPress={() => this.props.close()}>
+                            onPress={() => this.props.navigation.goBack()}>
                             <Icon name="x" size={25} color="#fff" />
                         </TouchableWithoutFeedback>
                     </View>
@@ -242,7 +243,7 @@ export default class PlayLessonScreen extends Component {
                             rotation={0}
                             fill={this.state.currentPosition}
                             tintColor="#5A6175"
-                            onAnimationComplete={this.state.currentPosition===100? () => setTimeout(() => this.props.close(), 800): () => {}}
+                            onAnimationComplete={this.state.currentPosition===100? () => setTimeout(() => this.props.navigation.goBack(), 800): () => {}}
                             style={{alignItems: "center",justifyContent: "center"}}
                             backgroundColor="#d4d4d4">
                             {
@@ -301,12 +302,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#FBF5EB",
     },
     headline: {
-        fontFamily: "Mukta-Bold",
         fontSize: 28,
         color: "#fff",
     },
     subHeadline: {
-        fontFamily: "Mukta-Regular",
         fontSize: 18,
         color: "#fff",
     },
