@@ -1,0 +1,167 @@
+[
+    {
+        "id": 0,
+        "week": 1,
+        "description": "Möt Breakup deine Trennung mit leichtigkeit überstehen! Antje erzählt ihre Geschichte und bereitet dich auf deine Reise vor",
+        "lessons": [
+            {
+                "id": 0,
+                "headline": "Einführung zum Programm",
+                "description": "Lerne Kevin, die App und das Programm kennen",
+                "free": true
+            },
+            {
+                "id": 1,
+                "headline": "Erste Schritte 1: Alles ist anders",
+                "description": "Kevins story: Wie er 10 Tage ohne Cola überlebte - und ein neues Lebensgefühl gewann",
+                "free": false
+            },
+            {
+                "id": 2,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true    
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 4,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 5,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 6,
+                "headline": "",
+                "description": "",
+                "free": true
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "week": 2,
+        "description": "Möt Breakup deine Trennung mit leichtigkeit überstehen! Antje erzählt ihre Geschichte und bereitet dich auf deine Reise vor",
+        "lessons": [
+            {
+                "id": 0,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 1,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 2,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 4,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 5,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 6,
+                "headline": "",
+                "description": "",
+                "free": true
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "week": 3,
+        "description": "Möt Breakup deine Trennung mit leichtigkeit überstehen! Antje erzählt ihre Geschichte und bereitet dich auf deine Reise vor",
+        "lessons": [
+            {
+                "id": 0,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 1,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 2,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 4,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 5,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 6,
+                "headline": "",
+                "description": "",
+                "free": true
+            }
+        ]
+    }
+]

@@ -8,17 +8,25 @@ export default function WeekPreview(props) {
 
     return (
         <View style={[styles.container, styles.shadow]}>
-            <ScrollView>
                 <Text>Woche {props.week}</Text>
-                <Text>Jetzt loslegen!</Text>
                 <Text>{props.description}</Text>
 
                 {showDetails ? 
                 <View style={{marginTop: 30}}>
-                    <LessonPreview 
-                        headline={"later ändern"}
-                        description={"later ändern desc"}
-                    />
+                    {
+                        props.lessons.map((lesson, index) => {
+                            return <LessonPreview 
+                                        key={index}
+                                        id={lesson.id}
+                                        weekId={props.id}
+                                        free={lesson.free}
+                                        headline={lesson.headline}
+                                        description={lesson.description}
+                                        currentExercise={props.currentExercise}
+                                        navigation={props.navigation}
+                                    />
+                        })
+                    }
                 </View> 
                 : null }
 
@@ -26,12 +34,11 @@ export default function WeekPreview(props) {
                     <Text>{props.currentExercise}/{props.totalExercise} Abgeschlossen</Text>
                 </View>
 
-                <View style={{position: "absolute", right: 0, bottom: -4}}>
+                <View style={{position: "absolute", right: 12, bottom: 12}}>
                     <TouchableWithoutFeedback hitSlop={{top: 10,right: 10,left: 10,bottom: 10}} onPress={() => setShowDetails(!showDetails)}>
                         <Icon name={showDetails ? "chevron-up" : "chevron-down"} size={26} />
                     </TouchableWithoutFeedback>
                 </View>
-            </ScrollView>
         </View>
     )
 }
@@ -39,7 +46,7 @@ export default function WeekPreview(props) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fefffe",
-        padding: 10,
+        padding: 15,
         marginHorizontal: "10%",
         borderRadius: 8
     },

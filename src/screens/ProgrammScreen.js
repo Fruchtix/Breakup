@@ -1,29 +1,42 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import WeekPreview from '../components/WeekPreview'
+import programm from '../data/programm.json'
 
-export default function ProgrammScreen() {
+export default function ProgrammScreen(props) {
+    const [currentExercise, setCurrentExercise ] = useState(4)
+
     return (
-        <View style={styles.container}>
-            {/* Image */}
-            <Image
-                style={styles.headerImage}
-                source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
-            />
+        <ScrollView>
+            <View style={styles.container}>
+                {/* Image */}
+                <Image
+                    style={styles.headerImage}
+                    source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
+                />
 
-            <View style={styles.content}>
-                <Text style={styles.headline}>Dein Programm</Text>
+                <View style={styles.content}>
+                    <Text style={styles.headline}>Dein Programm</Text>
 
-                <View>
-                    <WeekPreview
-                        week={1}
-                        description={"Mit Breakup deine Trennung mit leichtigkeit überstehen! Antje erzählt ihre Geschichte und bereitet dich auf deine Reise vor"}
-                        currentExercise={2}
-                        totalExercise={9}
-                    />
+                    <View>
+                        <View style={styles.pathLine}></View>
+                        {
+                            programm.map((week) => {
+                                return <View key={week.id} style={{marginTop: 25}}><WeekPreview
+                                            week={week.week}
+                                            id={week.id}
+                                            description={week.description}
+                                            currentExercise={currentExercise}
+                                            totalExercise={week.lessons.length}
+                                            lessons={week.lessons}
+                                            navigation={props.navigation}
+                                        /></View>
+                            })
+                        }
+                    </View>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
@@ -31,6 +44,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#ededed',
+      marginBottom: 50,
     },
     headerImage: {
         width: "100%",
@@ -44,5 +58,12 @@ const styles = StyleSheet.create({
     },
     content: {
         marginTop: 30
+    },
+    pathLine: {
+        width: 7,
+        backgroundColor: "#64696c",
+        height: "100%",
+        position: "absolute",
+        left: "49%"
     }
   });

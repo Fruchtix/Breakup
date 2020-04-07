@@ -21,7 +21,10 @@
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "0.7.3",
     "@react-native-community/masked-view": "0.1.6",
-    "react-native-svg": "11.0.1"
+    "react-native-svg": "11.0.1",
+    "expo-av": "~8.1.0",
+    "firebase": "7.9.0",
+    "undefined": "firebase/firestore"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",

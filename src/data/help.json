@@ -1,0 +1,62 @@
+[
+    {
+        "id": 100,
+        "subject": "Motivation",
+        "lessons": [
+            {
+                "id": 0,
+                "headline": "hilfe ich nehme pilze",
+                "description": "hier hilft dir wolfgang bei deinen fragen",
+                "free": true
+            },
+            {
+                "id": 1,
+                "headline": "",
+                "description": "",
+                "free": false
+            },
+            {
+                "id": 2,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            }
+        ]
+    },
+    {
+        "id": 101,
+        "subject": "Ullimuno",
+        "lessons": [
+            {
+                "id": 0,
+                "headline": "hilfe ich nehme pilze",
+                "description": "hier hilft dir wolfgang bei deinen fragen",
+                "free": true
+            },
+            {
+                "id": 1,
+                "headline": "",
+                "description": "",
+                "free": false
+            },
+            {
+                "id": 2,
+                "headline": "",
+                "description": "",
+                "free": true
+            },
+            {
+                "id": 3,
+                "headline": "",
+                "description": "",
+                "free": true
+            }
+        ]
+    }
+]

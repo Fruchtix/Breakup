@@ -10,6 +10,9 @@ import ProgrammScreen from '../screens/ProgrammScreen'
 import HelpScreen from '../screens/HelpScreen'
 import ProfileScreen from '../screens/ProfileScreen'
 
+import PlayLessonScreen from '../screens/PlayLessonScreen'
+import BuyModal from '../screens/BuyModal'
+
 const MainContainer = createBottomTabNavigator({
     HomeScreen: {
       screen: HomeScreen,
@@ -59,6 +62,8 @@ const MainContainer = createBottomTabNavigator({
 
 const StackContainer = createStackNavigator({
   MainContainer,
+  PlayLessonScreen,
+  BuyModal
 }, {
   initialRouteName: "MainContainer",
   headerMode: "none",
