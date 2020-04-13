@@ -13,6 +13,8 @@ import ProfileScreen from '../screens/ProfileScreen'
 import PlayLessonScreen from '../screens/PlayLessonScreen'
 import BuyModal from '../screens/BuyModal'
 
+import AuthRegister from '../screens/auth/AuthRegister'
+
 const MainContainer = createBottomTabNavigator({
     HomeScreen: {
       screen: HomeScreen,
@@ -63,13 +65,12 @@ const MainContainer = createBottomTabNavigator({
 const StackContainer = createStackNavigator({
   MainContainer,
   PlayLessonScreen,
-  BuyModal
+  BuyModal,
 }, {
   initialRouteName: "MainContainer",
   headerMode: "none",
   mode: "card"
 })
-
 
 const MainNavigator = createAppContainer(StackContainer)
 

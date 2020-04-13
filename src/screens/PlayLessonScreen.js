@@ -97,15 +97,18 @@ export default class PlayLessonScreen extends Component {
     }
 
     pushToHistory = () => {
+        const lessonId = this.props.navigation.getParam("id")
+        const weekId = this.props.navigation.getParam("weekId")
         return new Promise((resolve,reject) => {
             firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("History").doc("lastCourse").set(({
-                currentCourse: this.props.courseName,
+                currentCourse: weekId,
+                currentLesson: lessonId
             }))
             .then(() => {
                 resolve("SUCCESS")
             })
             .catch(() => {
-                console.log("error")
+                console.log("error push")
                 reject("FAILURE")
             })
         })
@@ -224,12 +227,13 @@ export default class PlayLessonScreen extends Component {
                         </TouchableWithoutFeedback>
                     </View>
 
-                    <View style={{marginTop: 20}}>
+                    {/* <View style={{marginTop: 20}}>
                         <Text style={styles.subHeadline}>{headline}</Text>
-                    </View>
+                    </View> */}
 
-                    <View style={{flex: 2, justifyContent: "center"}}>
-                        <Text style={styles.headline}>{description}</Text>
+                    <View style={{flex: 2.5, justifyContent: "center", alignItems: "center"}}>
+                        {/* <Text style={styles.headline}>{description}</Text> */}
+                        <Text style={styles.subHeadline}>{headline}</Text>
                     </View>
 
                     <View style={{flexDirection: "row", alignItems: "center"}}>

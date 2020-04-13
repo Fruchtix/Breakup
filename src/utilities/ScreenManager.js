@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Platform, YellowBox, View, Text } from 'react-native';
 import MainNavigator from '../navigation/MainNavigator'
+import AuthNavigator from '../navigation/AuthNavigator'
 import SplashScreen from '../screens/SplashScreen'
 import * as Font from 'expo-font';
 import _ from 'lodash';
@@ -69,8 +70,8 @@ class ScreenManager extends React.Component {
     }
     else if (this.state.loggedInStatus === 'loggedOut' && this.state.fontLoaded) {
         return (
-            <MainNavigator screenProps={{name: this.state.name}} />
-            // <AuthNavigator />
+            <AuthNavigator />
+            // <MainNavigator screenProps={{name: this.state.name}} />
         )
       }
       return <SplashScreen />
