@@ -7,10 +7,14 @@ import React from 'react';
 
 import AuthWelcome from '../screens/auth/AuthWelcome'
 import AuthRegister from '../screens/auth/AuthRegister'
+import AuthPassword from '../screens/auth/AuthPassword'
+import AuthDate from '../screens/auth/AuthDate'
 
 const AuthContainer = createStackNavigator({
     AuthWelcome,
-    AuthRegister
+    AuthDate,
+    AuthPassword,
+    AuthRegister,
 }, {
   initialRouteName: "AuthWelcome",
   headerMode: "none",

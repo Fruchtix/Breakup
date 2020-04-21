@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, TouchableWithoutFeedback, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, Keyboard, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 import {validate} from '../../utilities/ValidateInput'
@@ -15,11 +15,11 @@ export default class AuthRegister extends Component {
         }
     }
 
-    createUser = (email, password, firstName,eyeStatus) => {
+    createUser = (email, password, breakupDate) => {
         this.setState({showActivityIndicator: true})
         firebase.auth().createUserWithEmailAndPassword(email, password)
             // .then(() => this.sendVerificationEmail())
-            .then(() => this.updateUserProfile(firstName,eyeStatus))
+            .then(() => this.updateUserProfile(breakupDate))
             .then(() => this.setState({showActivityIndicator: false}))
             .catch((error) => {
             // Handle Errors here.
@@ -29,12 +29,12 @@ export default class AuthRegister extends Component {
         });
     }
 
-    updateUserProfile = (firstName,eyeStatus) => {
-        userId = firebase.auth().currentUser.uid
+    updateUserProfile = (breakupDate) => {
+        const userId = firebase.auth().currentUser.uid
+        console.log(userId)
         //Connect to UserDb and add information
         firebase.firestore().collection("users").doc(userId).set({
-            first: firstName,
-            eyeStatus: eyeStatus,
+            breakupDate: breakupDate,
             token: ""
         })
         .then(function() {
@@ -60,13 +60,12 @@ export default class AuthRegister extends Component {
     }
 
     render() {
-        const firstName = this.props.navigation.getParam('firstName', 'unknown')
         const password = this.props.navigation.getParam('password', 'unknown')
-        const eyeStatus = this.props.navigation.getParam('eyeStatus', 'unknown')
+        const breakupDate = this.props.navigation.getParam('breakupDate', 'unknown')
 
         const {navigate} = this.props.navigation;
         return (
-            <KeyboardAvoidingView style={styles.container} behavior="padding" keyboardVerticalOffset={70} enabled>
+            <View style={styles.container} >
                 <GoBackHeader navigation={this.props.navigation} />
                 <View style={[styles.content, {marginTop: 40}]}>
                     <Text style={styles.headline}>Wie lautet deine Email?</Text>
@@ -100,13 +99,13 @@ export default class AuthRegister extends Component {
                         <TouchableOpacity 
                             style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("email", this.state.email))}
-                            onPress={() => {this.createUser(this.state.email, password, firstName,eyeStatus), Keyboard.dismiss()}}>
+                            onPress={() => {this.createUser(this.state.email, password,breakupDate), Keyboard.dismiss()}}>
                                     {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
                                     <Text style={styles.btnText}> Registrierung abschließen</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
-            </KeyboardAvoidingView>
+            </View>
         )
     }
 }
@@ -115,7 +114,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingBottom: 35
+        paddingBottom: 40,
+        paddingTop: 30
     },
     headline: {
         alignSelf: "center",
