@@ -37,7 +37,7 @@
                 "id": 0,
                 "headline": "hilfe ich nehme pilze",
                 "description": "hier hilft dir wolfgang bei deinen fragen",
-                "free": true
+                "free": false
             },
             {
                 "id": 1,
