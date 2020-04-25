@@ -42,7 +42,7 @@ export default class AuthRegister extends Component {
         .catch(function(error) {
         });
 
-        firebase.firestore().collection("users").doc(userId).collection("Courses").doc("Grundlagen").set({
+        firebase.firestore().collection("users").doc(userId).collection("Courses").doc("0").set({
             currentExercise: 0
         })
         .then(function() {
@@ -51,7 +51,8 @@ export default class AuthRegister extends Component {
         });
 
         firebase.firestore().collection("users").doc(userId).collection("History").doc("lastCourse").set({
-            currentCourse: "Grundlagen"
+            currentCourse: 0,
+            currentLesson: 0
         })
         .then(function() {
         })

@@ -102,7 +102,7 @@ export default class PlayLessonScreen extends Component {
         return new Promise((resolve,reject) => {
             firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("History").doc("lastCourse").set(({
                 currentCourse: weekId,
-                currentLesson: lessonId
+                currentLesson: lessonId+1
             }))
             .then(() => {
                 resolve("SUCCESS")
@@ -115,13 +115,15 @@ export default class PlayLessonScreen extends Component {
     }
 
     unlockNext = () => {
+        const lessonId = this.props.navigation.getParam("id")
+        const weekId = this.props.navigation.getParam("weekId")
         return new Promise((resolve,reject) => {
-            firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("Courses").doc(this.props.courseName).get()
+            firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("Courses").doc(`${weekId}`).get()
             .then((doc) => {
                 if (doc.exists) {
-                    if(doc.data().currentExercise <= this.props.id) {
+                    if(doc.data().currentExercise <= lessonId) {
                         //Unlock next Exercise
-                        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("Courses").doc(this.props.courseName).update({
+                        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("Courses").doc(`${weekId}`).update({
                             currentExercise: doc.data().currentExercise + 1
                         })
                         .then(() => {
@@ -136,7 +138,7 @@ export default class PlayLessonScreen extends Component {
                         resolve("SUCCESS")
                     }
                 } else {
-                    firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("Courses").doc(this.props.courseName).set({
+                    firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).collection("Courses").doc(`${weekId}`).set({
                         currentExercise: 1
                     })
                     .then(() => {
@@ -155,6 +157,8 @@ export default class PlayLessonScreen extends Component {
     } 
 
     _onPlaybackStatusUpdate = async(playbackStatus) => {
+        const weekId = this.props.navigation.getParam("weekId")
+        const reload = this.props.navigation.getParam("reload")
         if (!playbackStatus.isLoaded) {
           // Update your UI for the unloaded state
           if (playbackStatus.error) {
@@ -173,8 +177,10 @@ export default class PlayLessonScreen extends Component {
                     if(this.didMount) {
                         this.setState({unlockNext: true})
                     }
-                    await Promise.all([this.pushToHistory(), this.unlockNext()]) 
-                    this.props.reload()
+                    if(weekId < 99) {
+                        await Promise.all([this.pushToHistory(), this.unlockNext()]) 
+                        reload()
+                    } 
                 }
           } else {
             // Update your UI for the paused state

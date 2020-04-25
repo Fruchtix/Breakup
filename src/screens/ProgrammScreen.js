@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import WeekPreview from '../components/WeekPreview'
 import programm from '../data/programm.json'

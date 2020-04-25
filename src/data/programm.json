@@ -12,21 +12,21 @@
             },
             {
                 "id": 1,
-                "headline": "Erste Schritte 1: Alles ist anders",
+                "headline": "Erste Schritte: Alles ist anders",
                 "description": "Kevins story: Wie er 10 Tage ohne Cola überlebte - und ein neues Lebensgefühl gewann",
-                "free": false
+                "free": true
             },
             {
                 "id": 2,
-                "headline": "",
-                "description": "",
+                "headline": "Jetzt gehts ab",
+                "description": "Kevins story: Wie er 10 Tage ohne Cola überlebte - und ein neues Lebensgefühl gewann",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
+                "headline": "Jetzt gehts ab",
                 "description": "",
-                "free": true    
+                "free": false    
             },
             {
                 "id": 3,
