@@ -48,6 +48,7 @@ export default function WeekPreview(props) {
                                         currentExercise={currentExercise+1}
                                         navigation={props.navigation}
                                         reload={() => reload()}
+                                        premium={props.premium}
                                     />
                         })
                     }

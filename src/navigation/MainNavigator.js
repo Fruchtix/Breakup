@@ -13,7 +13,9 @@ import ProfileScreen from '../screens/ProfileScreen'
 import PlayLessonScreen from '../screens/PlayLessonScreen'
 import BuyModal from '../screens/BuyModal'
 
-import AuthRegister from '../screens/auth/AuthRegister'
+import LawWebsite from '../screens/LawWebsite'
+import Notifications from "../screens/Notifications"
+import UserData from '../screens/UserData'
 
 const MainContainer = createBottomTabNavigator({
     HomeScreen: {
@@ -66,6 +68,9 @@ const StackContainer = createStackNavigator({
   MainContainer,
   PlayLessonScreen,
   BuyModal,
+  LawWebsite,
+  Notifications,
+  UserData
 }, {
   initialRouteName: "MainContainer",
   headerMode: "none",

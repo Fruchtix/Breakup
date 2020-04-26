@@ -36,6 +36,7 @@ export default function HelpScreen(props) {
                                                             currentExercise={100}
                                                             navigation={props.navigation}
                                                             weekId={subject.id}
+                                                            premium={props.screenProps.premium}
                                                         />
                                             })
                                         }

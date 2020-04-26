@@ -11,7 +11,7 @@ export default function LessonPreview(props) {
                 <Text>{props.description}</Text>
             </View>
             {
-                props.free ?  /* oder premium */
+                props.free || props.premium ?  /* oder premium */
                 <TouchableWithoutFeedback onPress={() => props.navigation.navigate("PlayLessonScreen", {headline: props.headline, description: props.description, id: props.id, weekId: props.weekId, reload: () => props.reload()})}>
                     <View style={styles.shadow}>
                         {

@@ -9,12 +9,16 @@ import AuthWelcome from '../screens/auth/AuthWelcome'
 import AuthRegister from '../screens/auth/AuthRegister'
 import AuthPassword from '../screens/auth/AuthPassword'
 import AuthDate from '../screens/auth/AuthDate'
+import LogInScreen from '../screens/auth/LogInScreen';
+import ResetPassword from '../screens/auth/ResetPassword'
 
 const AuthContainer = createStackNavigator({
     AuthWelcome,
     AuthDate,
     AuthPassword,
     AuthRegister,
+    LogInScreen,
+    ResetPassword
 }, {
   initialRouteName: "AuthWelcome",
   headerMode: "none",

@@ -7,10 +7,6 @@ import programm from '../data/programm.json'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 
-/*
-    Progress bar
-    Profile Page
-*/
 
 export default function HomeScreen(props) {
     const [currentExercise, setcurrentExercise] = useState(0)
@@ -106,7 +102,7 @@ export default function HomeScreen(props) {
                         source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
                     >
                         <View style={styles.breakupDaysContainer}>
-                            <Text style={styles.daysH1}>{breakupDate-1} Tage</Text>
+                            <Text style={styles.daysH1}>{breakupDate} Tage</Text>
                             <Text style={styles.daysH2}>seit Trennung</Text>
                         </View>
                     </ImageBackground>
@@ -123,6 +119,7 @@ export default function HomeScreen(props) {
                         currentExercise={100}
                         navigation={props.navigation}
                         weekId={helpLessons[randomOne].id}
+                        premium={props.screenProps.premium}
                     />
                     <LessonPreview 
                         id={helpLessons[randomThree].lessons[randomFour].id}
@@ -132,6 +129,7 @@ export default function HomeScreen(props) {
                         currentExercise={100}
                         navigation={props.navigation}
                         weekId={helpLessons[randomThree].id}
+                        premium={props.screenProps.premium}
                     />
                 </View>
 
@@ -196,7 +194,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fefffe',
-      paddingTop: 40,
+      paddingTop: 25,
     },
     btn: {
         borderRadius: 16,

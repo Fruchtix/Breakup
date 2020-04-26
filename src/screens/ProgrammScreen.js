@@ -30,6 +30,7 @@ export default function ProgrammScreen(props) {
                                             totalExercise={week.lessons.length}
                                             lessons={week.lessons}
                                             navigation={props.navigation}
+                                            premium={props.screenProps.premium}
                                         /></View>
                             })
                         }

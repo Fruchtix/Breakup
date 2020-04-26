@@ -27,10 +27,11 @@
     "react-native-screens": "~2.2.0",
     "react-native-svg": "11.0.1",
     "react-native-web": "~0.11.7",
+    "react-native-webview": "^8.1.1",
     "react-navigation": "^4.3.7",
     "react-navigation-stack": "^2.3.11",
     "react-navigation-tabs": "^2.8.11",
-    "undefined": "firebase/firestore"
+    "expo-in-app-purchases": "~8.1.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",

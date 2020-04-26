@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingBottom: 40,
-        paddingTop: 30
+        paddingTop: 25
     },
     headline: {
         alignSelf: "center",
