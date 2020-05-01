@@ -22,39 +22,41 @@ const MainContainer = createBottomTabNavigator({
       screen: HomeScreen,
       navigationOptions: {
         tabBarLabel: "Home",
-        tabBarIcon: ({focused}) => focused ? <Icon name="home" color="#ecb300" size={27} /> : <Icon name="home" color="#aaa" size={26} />
+        tabBarIcon: ({focused}) => focused ? <Icon name="home" color="#f47d31" size={27} /> : <Icon name="home" color="#5a6175" size={26} />
       }
     },
     ProgrammScreen: {
       screen: ProgrammScreen,
       navigationOptions: {
         tabBarLabel: "Programm",
-        tabBarIcon: ({focused}) => focused ? <Icon name="play-circle" color="#ecb300" size={27} /> : <Icon name="play-circle" color="#aaa" size={26} />
+        tabBarIcon: ({focused}) => focused ? <Icon name="play-circle" color="#f47d31" size={27} /> : <Icon name="play-circle" color="#5a6175" size={26} />
       }
     },
     HelpScreen: {
         screen: HelpScreen,
         navigationOptions: {
           tabBarLabel: "Hilfe",
-          tabBarIcon: ({focused}) => focused ? <Icon name="book" color="#ecb300" size={27} /> : <Icon name="book" color="#aaa" size={26} />
+          tabBarIcon: ({focused}) => focused ? <Icon name="book" color="#f47d31" size={27} /> : <Icon name="book" color="#5a6175" size={26} />
         }
     },
     ProfileScreen: {
         screen: ProfileScreen,
         navigationOptions: {
           tabBarLabel: "Profil",
-          tabBarIcon: ({focused}) => focused ? <Icon name="user" color="#ecb300" size={27} /> : <Icon name="user" color="#aaa" size={26} />
+          tabBarIcon: ({focused}) => focused ? <Icon name="user" color="#f47d31" size={27} /> : <Icon name="user" color="#5a6175" size={26} />
         }
       },
     }, {
     initialRouteName: "HomeScreen",
     tabBarOptions: {
-      activeTintColor: '#ecb300',
-      inactiveTintColor: '#aaa',
+      activeTintColor: '#f47d31',
+      inactiveTintColor: '#5a6175',
       style: {
         // borderTopWidth: 0,
         // marginVertical: 20,
-        height: 60
+        height: 70,
+        paddingBottom: 5,
+        paddingTop: 5
       },
       indicatorStyle: {
         // height: 0,

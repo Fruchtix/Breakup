@@ -13,23 +13,21 @@ export default function LessonPreview(props) {
             {
                 props.free || props.premium ?  /* oder premium */
                 <TouchableWithoutFeedback onPress={() => props.navigation.navigate("PlayLessonScreen", {headline: props.headline, description: props.description, id: props.id, weekId: props.weekId, reload: () => props.reload()})}>
-                    <View style={styles.shadow}>
-                        {
-                            props.currentExercise > props.id ?
-                            <Svg height={40} width={40}>
-                                <Circle cx="20" cy="20" r="18" fill="#7e004c"/>
-                                <Polygon points="14, 11 14, 29 29, 20" fill="#fff" />
-                            </Svg> : 
-                            <Svg height={40} width={40}>
-                                <Circle cx="20" cy="20" r="18" fill="#65696c"/>
-                                <Polygon points="14, 11 14, 29 29, 20" fill="#fff" />
-                            </Svg>
-                        }
-                    </View>
+                    {
+                        props.currentExercise > props.id ?
+                        <Svg height={40} width={40}>
+                            <Circle cx="20" cy="20" r="18" fill="#5a6175" />
+                            <Polygon points="14, 11 14, 29 29, 20" fill="#fefffe" />
+                        </Svg> : 
+                        <Svg height={40} width={40}>
+                            <Circle cx="20" cy="20" r="18" fill="#b2b2b2"/>
+                            <Polygon points="14, 11 14, 29 29, 20" fill="#fff" />
+                        </Svg>
+                    }
                 </TouchableWithoutFeedback> :
 
                 <TouchableWithoutFeedback onPress={() => props.navigation.navigate("BuyModal")}>
-                    <View style={styles.shadow}>
+                    <View>
                         <View style={styles.lockBtn}>
                             <Icon name="lock" size={21} color="#fefffe" />
                         </View>
@@ -50,7 +48,7 @@ const styles = StyleSheet.create({
     lockBtn: {
         borderRadius: 50,
         padding: 8,
-        backgroundColor: "#b1b3b5",
+        backgroundColor: "#b2b2b2",
         // alignItems: "center",
         // justifyContent: "center",
         margin: 2

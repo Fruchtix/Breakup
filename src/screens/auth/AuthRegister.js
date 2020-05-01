@@ -15,11 +15,11 @@ export default class AuthRegister extends Component {
         }
     }
 
-    createUser = (email, password, breakupDate) => {
+    createUser = (email, password) => {
         this.setState({showActivityIndicator: true})
         firebase.auth().createUserWithEmailAndPassword(email, password)
             // .then(() => this.sendVerificationEmail())
-            .then(() => this.updateUserProfile(breakupDate))
+            .then(() => this.updateUserProfile())
             .then(() => this.setState({showActivityIndicator: false}))
             .catch((error) => {
             // Handle Errors here.
@@ -29,12 +29,11 @@ export default class AuthRegister extends Component {
         });
     }
 
-    updateUserProfile = (breakupDate) => {
+    updateUserProfile = () => {
         const userId = firebase.auth().currentUser.uid
         console.log(userId)
         //Connect to UserDb and add information
         firebase.firestore().collection("users").doc(userId).set({
-            breakupDate: breakupDate,
             token: ""
         })
         .then(function() {
@@ -62,7 +61,6 @@ export default class AuthRegister extends Component {
 
     render() {
         const password = this.props.navigation.getParam('password', 'unknown')
-        const breakupDate = this.props.navigation.getParam('breakupDate', 'unknown')
 
         const {navigate} = this.props.navigation;
         return (
@@ -100,7 +98,7 @@ export default class AuthRegister extends Component {
                         <TouchableOpacity 
                             style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("email", this.state.email))}
-                            onPress={() => {this.createUser(this.state.email, password,breakupDate), Keyboard.dismiss()}}>
+                            onPress={() => {this.createUser(this.state.email, password), Keyboard.dismiss()}}>
                                     {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
                                     <Text style={styles.btnText}> Registrierung abschließen</Text>
                         </TouchableOpacity>

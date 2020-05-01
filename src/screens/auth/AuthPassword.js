@@ -15,7 +15,6 @@ export default class AuthPassword extends Component {
 
     render() {
         const {navigate} = this.props.navigation;
-        const breakupDate = this.props.navigation.getParam('breakupDate', 'unknown')
 
         return (
             <View style={styles.container}>
@@ -46,7 +45,7 @@ export default class AuthPassword extends Component {
                         <TouchableOpacity 
                             style={[styles.submitBtn, !(validate("password", this.state.password)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("password", this.state.password))}
-                            onPress={() => navigate('AuthRegister', {breakupDate: breakupDate, password: this.state.password})}>
+                            onPress={() => navigate('AuthRegister', {password: this.state.password})}>
                             <Text style={styles.btnText}>Weiter</Text>
                         </TouchableOpacity>
                     </View>

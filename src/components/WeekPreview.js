@@ -56,7 +56,7 @@ export default function WeekPreview(props) {
                 : null }
 
                 <View style={{alignItems: "center", marginTop: 15}}>
-                    <Text style={currentExercise > 0 ? [{color: "#7e004c"}] : styles.doneCount}>{currentExercise > props.totalExercise ? props.totalExercise : currentExercise}/{props.totalExercise} Abgeschlossen</Text>
+                    <Text style={currentExercise > 0 ? [styles.doneCount,{color: "#3a3938"}] : styles.doneCount}>{currentExercise > props.totalExercise ? props.totalExercise : currentExercise}/{props.totalExercise} Abgeschlossen</Text>
                 </View>
 
                 <View style={{position: "absolute", right: 10, bottom: 7}}>
@@ -67,7 +67,7 @@ export default function WeekPreview(props) {
             </View>
 
                 <View>
-                    <Progress.Bar color={"#7e004c"} borderWidth={0} unfilledColor={"#d4d4d4"} progress={currentExercise > props.totalExercise ? 1 : currentExercise/props.totalExercise} width={null} height={12} borderRadius={0} />
+                    <Progress.Bar color={"#77c79f"} borderWidth={0} unfilledColor={"#ebe8e4"} progress={currentExercise > props.totalExercise ? 1 : currentExercise/props.totalExercise} width={null} height={12} borderRadius={0} />
                 </View>
         </View>
     )
@@ -91,5 +91,8 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
 
         elevation: 5,
+    },
+    doneCount: {
+        color: "#666"
     }
   });

@@ -27,7 +27,7 @@ export default function AuthWelcome(props) {
                     </View>
                 </TouchableWithoutFeedback>
 
-                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("LogInScreen")}>
+                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("AuthPassword")}>
                     <View style={styles.registerBtnContainer}>
                         <View style={styles.logInBtn}>
                             <Text style={styles.logIntxt}>bin schon registriert</Text>

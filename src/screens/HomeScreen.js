@@ -70,43 +70,45 @@ export default function HomeScreen(props) {
     return (
             <ScrollView style={{backgroundColor: "#fefffe", paddingTop: 25}} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
-                <Text style={styles.logo}>Breakup</Text>
+                <Text style={styles.logo}>Break/<Text style={{color: "#f47d31"}}>up</Text></Text>
 
                 {/* Next Lesson */}
-                <View style={{paddingHorizontal: 27}}>
-                    <ImageBackground
-                        style={styles.headerImage}
-                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
-                    >
-                        <View style={styles.infoWrapper}>
-                            <Text numberOfLines={1} style={styles.h1}>Tag {currentExercise+1}: {programm[currentWeek].lessons[currentExercise].headline}</Text>
-                            <Text numberOfLines={3} style={styles.subh1}>{programm[currentWeek].lessons[currentExercise].description}</Text>
-                        </View>
-                    </ImageBackground>
-
-                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate("ProgrammScreen")}>
-                        <View style={styles.btnWrapper}>
-                            <View style={styles.btn}>
-                                <Icon name={"play"} size={24} color={"#fefffe"} />
-                                <Text style={styles.btnTxt}>Programm fortsetzen</Text>
-                            </View>
-                        </View>
-                    </TouchableWithoutFeedback>
+                <View style={{marginHorizontal: 27}}>
+                    <View style={[{padding: 5, borderRadius: 8, marginBottom: 35}, styles.shadow]}>
+                        <ImageBackground
+                            style={[styles.headerImage]}
+                            resizeMode="contain"
+                            source={require("../../assets/heatmap.png")}
+                        >
+                            <TouchableWithoutFeedback onPress={() => props.navigation.navigate("ProgrammScreen")}>
+                                <View style={[styles.btnWrapper, {bottom: -40,}]}>
+                                    <View style={[styles.btn, styles.shadow]}>
+                                        <Icon name={"play"} size={24} color={"#f9f7f3"} />
+                                        <Text style={styles.btnTxt}>Programm fortsetzen</Text>
+                                    </View>
+                                </View>
+                            </TouchableWithoutFeedback>
+                            {/* <View style={styles.infoWrapper}>
+                                <Text numberOfLines={1} style={styles.h1}>Tag {currentExercise+1}: {programm[currentWeek].lessons[currentExercise].headline}</Text>
+                                <Text numberOfLines={3} style={styles.subh1}>{programm[currentWeek].lessons[currentExercise].description}</Text>
+                            </View> */}
+                        </ImageBackground>
+                        {/* <Image
+                            style={styles.headerImage}
+                            source={require("../../assets/heatmap.png")}
+                        /> */}
+                    </View>
                 </View>
 
                 {/* Tage seit Trennung */}
-                <View style={{paddingHorizontal: 27, marginTop: 30}}>
-                    <Text style={[styles.suggestionsTxt, {marginBottom: 12}]}>Aktuelle Informationen</Text>
-                    <ImageBackground
-                        style={styles.daysImage}
-                        source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
-                    >
+                {/* <View style={{paddingHorizontal: 27, marginTop: 30}}>
+                    <Text style={[styles.suggestionsTxt, {marginBottom: 6}]}>Dein Fortschritt</Text>
                         <View style={styles.breakupDaysContainer}>
-                            <Text style={styles.daysH1}>{breakupDate} Tage</Text>
-                            <Text style={styles.daysH2}>seit Trennung</Text>
+                            <Text style={styles.daysH1}>{breakupDate} Tage seit letztem Kontakt</Text>
+                            <Text style={styles.daysH1}>-</Text>
+                            <Text style={styles.daysH1}>{breakupDate} Tage seit Trennung</Text>
                         </View>
-                    </ImageBackground>
-                </View>
+                </View> */}
 
                 {/* Empfehlungen */}
                 <View style={styles.suggestions}>
@@ -135,54 +137,39 @@ export default function HomeScreen(props) {
 
                 {/* About */}
                 <View style={styles.aboutContainer}>
-                    <Text style={styles.abouth1}>Über Breakup</Text>
+                    <Text style={[styles.abouth1, styles.suggestionsTxt]}>Über Breakup</Text>
 
                     <View style={styles.aboutInnerContainer}>
                         <Image
                             style={styles.profileImage}
-                            source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
+                            resizeMode="cover"
+                            source={require("../../assets/women.png")}
                         />
                         <Text style={styles.abouth2}>Prof. Dr. Breakup</Text>
                         <Text style={[styles.aboutTxt, {marginBottom: 11}]}>Breakup ist eine wirklich tolle app, das musst du jetzt einfach glauben! Bitte gib mir dein Geld, Danke!</Text>
                         <Text style={styles.aboutTxt}>Der Wunsch deine Trennung zu heilen ist fucking groß. Also worauf waretst du?! Kauf dir jetzt alles und morgen bist du wieder die Glücklichkeit in Person. Dafür stehe ich mit meinem Namen, 'Herr Breakup'.</Text>
+
+                        <TouchableWithoutFeedback onPress={() => props.navigation.navigate("PlayLessonScreen", {id: 0,weekId: 999})}>
+                            <View style={{paddingTop: 25, marginBottom: 12}}>
+                                <Text style={styles.welcometxt}>Wilkommens-Audio anhören</Text>
+                            </View>
+                        </TouchableWithoutFeedback>
                     </View>
                 </View>
 
-                {/* Buy */}
-                <View style={styles.buyContainer}>
-                    <View style={styles.buyInnerContainer}>
-                        <Text style={styles.buyTxt}>Dein Erfolgsprogramm</Text>
 
-                        <View style={styles.proPoint}>
-                            <Icon name="check" size={24} color="green" />
-                            <Text style={styles.proPointTxt}>7-Wochen Anti-Liebeskummer Programm</Text>
-                        </View>
+                <View style={styles.buyWrapper}>
+                    <Text style={styles.headline}>Breakup Programm</Text>
+                    <Text style={styles.headline}>{props.screenProps.premium ? "freigeschaltet" : "freischalten"}</Text>
 
-                        <View style={styles.proPoint}>
-                            <Icon name="check" size={24} color="green" />
-                            <Text style={styles.proPointTxt}>Mer als 400 Minuten Hörspaß und viele Tipps um deinen liebeskummer schnell zu überstehen.</Text>
-                        </View>
-
-                        <View style={styles.proPoint}>
-                            <Icon name="check" size={24} color="green" />
-                            <Text style={styles.proPointTxt}>7-Wochen Anti-Liebeskummer Programm</Text>
-                        </View>
-
-                        <TouchableWithoutFeedback onPress={() => props.navigation.navigate("BuyModal")}>
-                            <View style={styles.registerBtnContainer}>
-                                <View style={[styles.shadow,styles.registerBtn]}>
-                                    <Text style={styles.registerTxt}>Will ich haben</Text>
-                                </View>
+                    <ImageBackground style={{flex: 1, height: "100%",width: "100%"}} resizeMode="contain" source={require("../../assets/heart.png")}>
+                        {/* Buy Button */}
+                        <TouchableWithoutFeedback style={{alignSelf: "center"}} onPress={() => {props.screenProps.premium ? props.navigation.navigate("ProgrammScreen") : props.navigation.navigate("BuyModal")}}>
+                            <View style={[styles.buyButton, styles.shadow]}>
+                                <Text style={styles.btnTxt}>{props.screenProps.premium ? "Zum Programm" : "Jetzt freischalten"}</Text>
                             </View>
                         </TouchableWithoutFeedback>
-
-                        <View style={styles.sign}>
-                            <Text>Unterschrift</Text>
-                        </View>
-
-                    </View>
-
-
+                    </ImageBackground>
                 </View>
 
         </View>
@@ -194,32 +181,41 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fefffe',
-      paddingTop: 25,
+      paddingTop: 28,
     },
     btn: {
-        borderRadius: 16,
+        borderRadius: 20,
         alignItems: "center",
         overflow: "hidden",
-        backgroundColor: "#7e004c",
+        backgroundColor: "#586077",
         flexDirection: "row",
         paddingHorizontal: 15,
-        paddingVertical: 7
+        paddingVertical: 9
     },
     btnWrapper: {
+        zIndex: 100,
         alignItems: "center",
         overflow: "hidden",
-        marginTop: -20
+        position: "absolute",
+        padding: 10,
+        alignSelf: "center"
     },
     btnTxt: {
         textTransform: "uppercase",
-        color: "#fefffe",
-        paddingLeft: 5
+        color: "#f9f7f3",
+        paddingLeft: 5,
+        fontWeight: "bold"
     },
     headerImage: {
         width: "100%",
-        height: 200,
+        height: 210,
         borderRadius: 5,
-        overflow: "hidden"
+        // borderWidth: 1,
+        borderColor: "#f47d31",
+    },
+    buyImage: {
+        width: "100%",
+        height: 210,
     },
     daysImage: {
         width: "100%",
@@ -234,9 +230,10 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
     logo: {
-        fontSize: 24,
+        fontSize: 26,
         paddingHorizontal: 27,
-        marginBottom: 16
+        marginBottom: 17,
+        color: "#3a3938"
     },
     h1: {
         color: "#fefffe",
@@ -253,25 +250,27 @@ const styles = StyleSheet.create({
     },
     aboutContainer: {
         alignItems: "center",
-        backgroundColor: "#ededed",
+        // backgroundColor: "#f4e6d4",
+        backgroundColor: "#faf7f2",
         paddingHorizontal: 27,
         marginTop: 40,
-        paddingTop: 25,
+        paddingTop: 35,
     },
     aboutInnerContainer: {
         alignItems: "center",
         backgroundColor: "#fefffe",
         borderRadius: 5,
         paddingHorizontal: "8%",
-        marginTop: 50,
-        marginBottom: 50,
+        marginTop: 44,
+        marginBottom: 40,
         paddingBottom: 20
     },
     aboutTxt: {
         textAlign: "center"
     },
     abouth2: {
-
+        marginTop: 10,
+        marginBottom: 10
     },
     abouth1: {
 
@@ -285,37 +284,11 @@ const styles = StyleSheet.create({
         textTransform: "uppercase",
         color: "grey"
     },
-    buyContainer: {
-        alignItems: "center",
-        backgroundColor: "#2a9184",
-        paddingHorizontal: 27,
-        // marginTop: 40,
-        paddingTop: 25,
-        overflow: "hidden"
-    },
-    buyInnerContainer: {
-        backgroundColor: "#fefffe",
-        borderRadius: 5,
-        paddingHorizontal: "8%",
-        marginTop: 50,
-        marginBottom: 40,
-        paddingBottom: 20,
-        overflow: "hidden"
-
-    },
-    proPoint: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 10
-    },
-    buyTxt: {
-        textAlign: "center",
-        marginVertical: 20,
-        fontSize: 20
-    },
-    proPointTxt: {
-        marginLeft: 8
-    },
+    // buyWrapper: {
+    //     marginTop: 30,
+    //     alignItems: "center",
+    //     marginBottom: 40
+    // },
     shadow: {
         shadowColor: "#000",
         shadowOffset: {
@@ -360,6 +333,47 @@ const styles = StyleSheet.create({
     breakupDaysContainer: {
         alignItems: "center",
         justifyContent: "center",
-        flex: 1
-    }
+        flex: 1,
+        // backgroundColor: "#2a9d8f",
+        height: 175
+    },
+    welcometxt: {
+        textTransform: "uppercase",
+        color: "#f47d31",
+        borderBottomColor: "#f47d31",
+        borderBottomWidth: 1
+    },
+    buyTxt: {
+        fontSize: 20,
+        marginBottom: 20
+    },
+    buyWrapper: {
+        height: 350,
+        backgroundColor: "#fefffe",
+        alignItems: "center",
+        paddingTop: 25,
+    },
+    buyButton: {
+        borderRadius: 50,
+        overflow: 'hidden',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40,
+        flexDirection: "row",
+        backgroundColor: "#5A6176",
+        paddingHorizontal: 25,
+        marginTop: 15,
+        alignSelf: "center"
+    },
+    btnText: {
+        color: "#fff",
+        fontSize: 14,
+        letterSpacing: 3,
+        textTransform: "uppercase"
+    },
+    headline: {
+        fontSize: 21,
+        color: "#5A6176",
+        lineHeight: 32,
+    },
   });
