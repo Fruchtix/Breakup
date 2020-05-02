@@ -19,7 +19,7 @@ export default function AuthWelcome(props) {
             </View>
 
             <View style={styles.buttons}>
-                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("AuthDate")}>
+                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("AuthPassword")}>
                     <View style={styles.registerBtnContainer}>
                         <View style={[styles.shadow,styles.registerBtn]}>
                             <Text style={styles.registerTxt}>jetzt registrieren</Text>
@@ -27,7 +27,7 @@ export default function AuthWelcome(props) {
                     </View>
                 </TouchableWithoutFeedback>
 
-                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("AuthPassword")}>
+                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("LogInScreen")}>
                     <View style={styles.registerBtnContainer}>
                         <View style={styles.logInBtn}>
                             <Text style={styles.logIntxt}>bin schon registriert</Text>

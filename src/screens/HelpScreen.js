@@ -1,22 +1,24 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView, Image, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, ImageBackground, Platform } from 'react-native'
 import helpLessons from '../data/help.json'
 import LessonPreview from '../components/LessonPreview'
 
 export default function HelpScreen(props) {
     return (
-        <ScrollView>
+        <ScrollView style={{backgroundColor: "#fefffe"}} showsVerticalScrollIndicator={false} >
             <View style={styles.container}>
                 {/* Image */}
                 <ImageBackground
                     style={styles.headerImage}
-                    source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
+                    source={require("../../assets/medicine.png")}
                 >
                     <View style={styles.infoWrapper}>
-                        <Text style={styles.h1}>Schnelle Hilfen</Text>
-                        <Text style={styles.subh1}>Alles was inspiriert,</Text>
-                        <Text style={styles.subh1}>motiviert und die</Text>
-                        <Text style={styles.subh1}>Trennung erleichtert.</Text>
+                        <View style={[styles.infoInnerWrapper, styles.shadow]}>
+                            <Text style={styles.h1}>Schnelle Hilfen</Text>
+                            <Text style={styles.subh1}>Alles was inspiriert,</Text>
+                            <Text style={styles.subh1}>motiviert und die</Text>
+                            <Text style={styles.subh1}>Trennung erleichtert.</Text>
+                        </View>
                     </View>
                 </ImageBackground>
 
@@ -24,7 +26,7 @@ export default function HelpScreen(props) {
                     {
                         helpLessons.map((subject) => {
                             return <View key={subject.id}>
-                                        <Text>{subject.subject}</Text>
+                                        <Text style={styles.subject}>{subject.subject}</Text>
                                         {
                                             subject.lessons.map((lesson) => {
                                                 return <LessonPreview 
@@ -53,7 +55,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       paddingBottom: 50,
-      backgroundColor: '#fff',
+      backgroundColor: '#faf7f2',
     },
     headerImage: {
         width: "100%",
@@ -61,16 +63,41 @@ const styles = StyleSheet.create({
         marginBottom: 25
     },
     infoWrapper: {
-        paddingTop: 70,
-        paddingLeft: "10%"
+        marginTop: Platform.OS === "ios" ? 60 : 45,
+        marginLeft: "10%",
+        alignItems: "flex-start"
+    },
+    infoInnerWrapper: {
+        padding: 8,
+        backgroundColor: "#5a5857",
+        borderRadius: 8,
+        opacity: 0.9
     },
     h1: {
-        color: "#fff"
+        color: "#fefffe",
+        fontSize: 22,
+        marginBottom: 5
     },
     subh1: {
-        color: "#fff"
+        color: "#fefffe",
+        fontSize: 15
     },
     content: {
         marginHorizontal: "10%",
-    }
+    },
+    subject: {
+        marginBottom: 5,
+        fontSize: 20
+    },
+    shadow: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
   });

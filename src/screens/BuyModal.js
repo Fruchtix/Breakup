@@ -46,16 +46,20 @@ export default class BuyModal extends Component {
                         </TouchableOpacity>
                     </View>
 
+                    {/* Logo */}
+                    <View style={styles.logoWrapper}>
+                        <Text style={styles.logo}>Break/<Text style={{color: "#f47d31"}}>up</Text></Text>
+                    </View>
+
                     <View style={styles.container}>
 
-                        {/* Logo */}
-                        <View style={styles.logoWrapper}>
+
+                        <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+
                             <Text>Breakup-Programm</Text>
                             <Text>39,99 €</Text>
                             <Text>(einmalig)</Text>
-                        </View>
 
-                        <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
                             <View style={{height: (screenHeight - 160)}}>
                                 {/* Vorteile von EyeYoga */}
                                 <View style={{marginBottom: 35}}>
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         width: "100%",
         paddingHorizontal: 18,
-        marginTop: Platform.OS === 'android' ? 25 : 50,
+        marginTop: Platform.OS === 'android' ? 25 : 40,
         // position: "absolute",
     },
     headline: {
@@ -218,15 +222,9 @@ const styles = StyleSheet.create({
         color: "#fff"
     },
     logoWrapper: {
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: 15
-    },
-    logo: {
-        width: 70,
-        height: 35,
-        // borderRadius: 30,
-        // backgroundColor: "#B5D780",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        left: 20
     },
     rechtliches: {
         marginHorizontal: 10,
@@ -268,5 +266,11 @@ const styles = StyleSheet.create({
         // alignItems: "center",
         marginBottom: 10,
         marginTop: 18
+    },
+    logo: {
+        fontSize: 26,
+        // paddingHorizontal: 27,
+        marginBottom: 17,
+        color: "#3a3938"
     },
 });

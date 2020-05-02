@@ -2,7 +2,7 @@
     {
         "id": 0,
         "week": 1,
-        "description": "Möt Breakup deine Trennung mit leichtigkeit überstehen! Antje erzählt ihre Geschichte und bereitet dich auf deine Reise vor",
+        "description": "Mit Breakup deine Trennung mit leichtigkeit überstehen! Antje erzählt ihre Geschichte und bereitet dich auf deine Reise vor",
         "lessons": [
             {
                 "id": 0,
@@ -25,31 +25,31 @@
             {
                 "id": 3,
                 "headline": "Jetzt gehts ab",
-                "description": "",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": false    
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 4,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 5,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 6,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             }
         ]
@@ -61,50 +61,50 @@
         "lessons": [
             {
                 "id": 0,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 1,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 2,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 4,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 5,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 6,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             }
         ]
@@ -116,50 +116,50 @@
         "lessons": [
             {
                 "id": 0,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 1,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 2,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 4,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 5,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 6,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             }
         ]

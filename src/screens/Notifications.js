@@ -10,8 +10,8 @@ export default function Notifications(props) {
             </View>
 
             <Text style={styles.headline}>Hier wird gerade</Text>
-            <Text style={styles.headline}>noch dran gearbeitet</Text>
-            <View style={{alignItems: "center", justifyContent: "center"}}>
+            <Text style={styles.headline}>noch dran gearbeitet...</Text>
+            <View style={{alignItems: "center", justifyContent: "center", marginTop: 20}}>
                 <ImageBackground style={{width: "100%", height: 300}} source={require("../../assets/inwork.png")} >
                     <Text></Text>
                 </ImageBackground>

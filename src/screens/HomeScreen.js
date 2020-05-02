@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, ImageBackground, TouchableWithoutFeedback, Image } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, ImageBackground, TouchableWithoutFeedback, Image, Platform, Dimensions } from 'react-native'
 import {Feather as Icon} from '@expo/vector-icons'
 import LessonPreview from '../components/LessonPreview'
 import helpLessons from '../data/help.json'
@@ -44,12 +44,12 @@ export default function HomeScreen(props) {
             });
 
         let one = Math.round(Math.random() * 1)
-        let two = Math.round(Math.random() * 1)
+        let two = Math.round(Math.random() * 3)
         let three = Math.round(Math.random() * 1)
-        let four = Math.round(Math.random() * 1)
+        let four = Math.round(Math.random() * 3)
 
         if(four === two) {
-            four = Math.round(Math.random() * 1)
+            four = Math.round(Math.random() * 3)
         }
         
         setRandomOne(one)  
@@ -73,31 +73,24 @@ export default function HomeScreen(props) {
                 <Text style={styles.logo}>Break/<Text style={{color: "#f47d31"}}>up</Text></Text>
 
                 {/* Next Lesson */}
-                <View style={{marginHorizontal: 27}}>
-                    <View style={[{padding: 5, borderRadius: 8, marginBottom: 35}, styles.shadow]}>
+                <View style={{marginHorizontal: 23}}>
+                    <View style={[ {padding: 5, borderRadius: 8, marginBottom: 35, overflow: "hidden"}, styles.shadow]}>
                         <ImageBackground
                             style={[styles.headerImage]}
-                            resizeMode="contain"
-                            source={require("../../assets/heatmap.png")}
+                            resizeMode="cover"
+                            source={require("../../assets/meditate.png")}
                         >
-                            <TouchableWithoutFeedback onPress={() => props.navigation.navigate("ProgrammScreen")}>
-                                <View style={[styles.btnWrapper, {bottom: -40,}]}>
-                                    <View style={[styles.btn, styles.shadow]}>
-                                        <Icon name={"play"} size={24} color={"#f9f7f3"} />
-                                        <Text style={styles.btnTxt}>Programm fortsetzen</Text>
-                                    </View>
-                                </View>
-                            </TouchableWithoutFeedback>
-                            {/* <View style={styles.infoWrapper}>
-                                <Text numberOfLines={1} style={styles.h1}>Tag {currentExercise+1}: {programm[currentWeek].lessons[currentExercise].headline}</Text>
-                                <Text numberOfLines={3} style={styles.subh1}>{programm[currentWeek].lessons[currentExercise].description}</Text>
-                            </View> */}
                         </ImageBackground>
-                        {/* <Image
-                            style={styles.headerImage}
-                            source={require("../../assets/heatmap.png")}
-                        /> */}
                     </View>
+
+                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate("ProgrammScreen")}>
+                        <View style={[styles.btnWrapper, {top: 190, elevation: 10}]}>
+                            <View style={[styles.btn, styles.shadow]}>
+                                <Icon name={"play"} size={24} color={"#f9f7f3"} />
+                                <Text style={styles.btnTxt}>Programm {currentExercise === 0 || currentWeek === 1 ? "starten" : "fortsetzen"}</Text>
+                            </View>
+                        </View>
+                    </TouchableWithoutFeedback>
                 </View>
 
                 {/* Tage seit Trennung */}
@@ -149,8 +142,8 @@ export default function HomeScreen(props) {
                         <Text style={[styles.aboutTxt, {marginBottom: 11}]}>Breakup ist eine wirklich tolle app, das musst du jetzt einfach glauben! Bitte gib mir dein Geld, Danke!</Text>
                         <Text style={styles.aboutTxt}>Der Wunsch deine Trennung zu heilen ist fucking groß. Also worauf waretst du?! Kauf dir jetzt alles und morgen bist du wieder die Glücklichkeit in Person. Dafür stehe ich mit meinem Namen, 'Herr Breakup'.</Text>
 
-                        <TouchableWithoutFeedback onPress={() => props.navigation.navigate("PlayLessonScreen", {id: 0,weekId: 999})}>
-                            <View style={{paddingTop: 25, marginBottom: 12}}>
+                        <TouchableWithoutFeedback onPress={() => props.navigation.navigate("PlayLessonScreen", {id: 0,weekId: 999, headline: "Wilkommen bei Breakup"})}>
+                            <View style={{paddingTop: 25, marginBottom: 12, borderBottomColor: "#f47d31", borderBottomWidth: 1}}>
                                 <Text style={styles.welcometxt}>Wilkommens-Audio anhören</Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -162,7 +155,7 @@ export default function HomeScreen(props) {
                     <Text style={styles.headline}>Breakup Programm</Text>
                     <Text style={styles.headline}>{props.screenProps.premium ? "freigeschaltet" : "freischalten"}</Text>
 
-                    <ImageBackground style={{flex: 1, height: "100%",width: "100%"}} resizeMode="contain" source={require("../../assets/heart.png")}>
+                    <ImageBackground style={{flex: 1, height: "100%",width: "100%"}} resizeMode="contain" source={require("../../assets/friends.png")}>
                         {/* Buy Button */}
                         <TouchableWithoutFeedback style={{alignSelf: "center"}} onPress={() => {props.screenProps.premium ? props.navigation.navigate("ProgrammScreen") : props.navigation.navigate("BuyModal")}}>
                             <View style={[styles.buyButton, styles.shadow]}>
@@ -209,9 +202,11 @@ const styles = StyleSheet.create({
     headerImage: {
         width: "100%",
         height: 210,
-        borderRadius: 5,
+        zIndex: 1,
+        overflow: "hidden",
+        borderRadius: 8
         // borderWidth: 1,
-        borderColor: "#f47d31",
+        // borderColor: "#f47d31",
     },
     buyImage: {
         width: "100%",
@@ -340,8 +335,6 @@ const styles = StyleSheet.create({
     welcometxt: {
         textTransform: "uppercase",
         color: "#f47d31",
-        borderBottomColor: "#f47d31",
-        borderBottomWidth: 1
     },
     buyTxt: {
         fontSize: 20,
@@ -376,4 +369,7 @@ const styles = StyleSheet.create({
         color: "#5A6176",
         lineHeight: 32,
     },
+    ios: {
+        overflow: "hidden"
+    }
   });

@@ -61,7 +61,7 @@ export default function WeekPreview(props) {
 
                 <View style={{position: "absolute", right: 10, bottom: 7}}>
                     <TouchableWithoutFeedback hitSlop={{top: 10,right: 10,left: 10,bottom: 10}} onPress={() => setShowDetails(!showDetails)}>
-                        <Icon name={showDetails ? "chevron-up" : "chevron-down"} size={26} />
+                        <Icon name={showDetails ? "chevron-up" : "chevron-down"} size={26} color="#5A6176" />
                     </TouchableWithoutFeedback>
                 </View>
             </View>

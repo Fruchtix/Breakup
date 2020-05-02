@@ -223,13 +223,13 @@ export default class PlayLessonScreen extends Component {
         const description = this.props.navigation.getParam("description")
 
         return (
-            <ImageBackground style={styles.safeArea} source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}} >
+            <ImageBackground style={styles.safeArea} source={require("../../assets/audio.png")} >
                 <View style={styles.content}>
                     <View style={styles.header}>
                         <TouchableWithoutFeedback
                             hitSlop={{top: 7, right: 7, left: 7, bottom: 7}}
                             onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="x" size={25} color="#fff" />
+                            <Icon name="x" size={26} color="#fff" />
                         </TouchableWithoutFeedback>
                     </View>
 
@@ -243,7 +243,7 @@ export default class PlayLessonScreen extends Component {
                     </View>
 
                     <View style={{flexDirection: "row", alignItems: "center"}}>
-                        <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "flex-end", marginRight: 23}} onPress={() => this.changePosition("rewind")}>
+                        <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "flex-end", marginRight: 23}} /*onPress={() => this.changePosition("rewind")}*/>
                             <Icon name="rewind" size={25} color="#fff" />
                         </TouchableOpacity>
 
@@ -267,7 +267,7 @@ export default class PlayLessonScreen extends Component {
                             }
                         </AnimatedCircularProgress>
 
-                        <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "center", marginLeft: 23}} onPress={() => this.changePosition("forward")}>
+                        <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "center", marginLeft: 23}} /*onPress={() => this.changePosition("forward")}*/>
                             <Icon name="fast-forward" size={25} color="#fff" />
                         </TouchableOpacity>
                     </View>

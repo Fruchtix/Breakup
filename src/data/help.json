@@ -5,26 +5,26 @@
         "lessons": [
             {
                 "id": 0,
-                "headline": "hilfe ich nehme pilze",
-                "description": "hier hilft dir wolfgang bei deinen fragen",
+                "headline": "Test Headline11",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 1,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline12",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": false
             },
             {
                 "id": 2,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline13",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline14",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             }
         ]
@@ -35,26 +35,26 @@
         "lessons": [
             {
                 "id": 0,
-                "headline": "hilfe ich nehme pilze",
-                "description": "hier hilft dir wolfgang bei deinen fragen",
+                "headline": "Test Headline21",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": false
             },
             {
                 "id": 1,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline22",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": false
             },
             {
                 "id": 2,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline23",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             },
             {
                 "id": 3,
-                "headline": "",
-                "description": "",
+                "headline": "Test Headline24",
+                "description": "Dies ist eine Testbeschreibung. Hier könnte etwas sinvolles stehen.",
                 "free": true
             }
         ]

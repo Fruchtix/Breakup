@@ -6,81 +6,91 @@ export default function ProfileScreen(props) {
     return (
         <View style={styles.container}>
             <View style={styles.safeArea}>
-                <Text>Profile</Text>
+                <Text style={styles.name}>Profil</Text>
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.kasten}>
-                    <Text style={styles.lineh1}>Profil</Text>
+                    <View style={styles.h1wrapper}>
+                        <Text style={styles.lineh1}>Profil</Text>
+                    </View>
 
                     <TouchableWithoutFeedback onPress={() => props.navigation.navigate("UserData")}>
                         <View style={styles.line}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Icon name="user" size={24} color="green" style={{marginRight: 15}} />
+                            <View style={styles.row}>
+                                <Icon name="user" size={26} color="#5A6176" style={{marginRight: 15}} />
                                 <Text style={styles.linePoint}>Benutzerdaten</Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color="grey" />
+                            <Icon name="chevron-right" size={26} color="grey" />
                         </View>
                     </TouchableWithoutFeedback>
 
                     {!props.screenProps.premium ? <TouchableWithoutFeedback onPress={() => props.navigation.navigate("BuyModal")}>
                         <View style={styles.line}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Icon name="user" size={24} color="green" style={{marginRight: 15}} />
+                            <View style={styles.row}>
+                                <Icon name="gift" size={26} color="#5A6176" style={{marginRight: 15}} />
                                 <Text style={styles.linePoint}>Dein Programm</Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color="grey" />
+                            <Icon name="chevron-right" size={26} color="grey" />
                         </View>
                     </TouchableWithoutFeedback> : null }
                 </View>
 
                 <View style={styles.kasten}>
-                    <Text style={styles.lineh1}>Einstellungen</Text>
+                <View style={styles.h1wrapper}>
+                        <Text style={styles.lineh1}>Einstellungen</Text>
+                    </View>
 
                     <TouchableWithoutFeedback onPress={() => props.navigation.navigate("Notifications")}>
                         <View style={styles.line}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Icon name="user" size={24} color="green" style={{marginRight: 15}} />
+                            <View style={styles.row}>
+                                <Icon name="bell" size={26} color="#5A6176" style={{marginRight: 15}} />
                                 <Text style={styles.linePoint}>Mitteilungen</Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color="grey" />
+                            <Icon name="chevron-right" size={26} color="grey" />
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
 
                 <View style={styles.kasten}>
-                    <Text style={styles.lineh1}>Rechtliches</Text>
+                <View style={styles.h1wrapper}>
+                        <Text style={styles.lineh1}>Rechtliches</Text>
+                    </View>
 
                     <TouchableWithoutFeedback onPress={() => props.navigation.navigate("LawWebsite", {type: "datenschutz"})}>
                         <View style={styles.line}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Icon name="user" size={24} color="green" style={{marginRight: 15}} />
+                            <View style={styles.row}>
+                                <Icon name="lock" size={26} color="#5A6176" style={{marginRight: 15}} />
                                 <Text style={styles.linePoint}>Datenschutz</Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color="grey" />
+                            <Icon name="chevron-right" size={26} color="grey" />
                         </View>
                     </TouchableWithoutFeedback>
 
                     <TouchableWithoutFeedback onPress={() => props.navigation.navigate("LawWebsite", {type: "agb"})}>
                         <View style={styles.line}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Icon name="user" size={24} color="green" style={{marginRight: 15}} />
+                            <View style={styles.row}>
+                                <Icon name="file-text" size={26} color="#5A6176" style={{marginRight: 15}} />
                                 <Text style={styles.linePoint}>AGB</Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color="grey" />
+                            <Icon name="chevron-right" size={26} color="grey" />
                         </View>
                     </TouchableWithoutFeedback>
 
                     <TouchableWithoutFeedback onPress={() => props.navigation.navigate("LawWebsite", {type: "impressum"})}>
                         <View style={styles.line}>
-                            <View style={{flexDirection: "row", alignItems: "center"}}>
-                                <Icon name="user" size={24} color="green" style={{marginRight: 15}} />
+                            <View style={styles.row}>
+                                <Icon name="book" size={26} color="#5A6176" style={{marginRight: 15}} />
                                 <Text style={styles.linePoint}>Impressum</Text>
                             </View>
-                            <Icon name="chevron-right" size={24} color="grey" />
+                            <Icon name="chevron-right" size={26} color="grey" />
                         </View>
                     </TouchableWithoutFeedback>
                 </View>
+
+                {/* <View style={styles.logoContainer}>
+                    <Text style={styles.logo}>Break/<Text style={{color: "#f47d31"}}>up</Text></Text>
+                </View> */}
             </ScrollView>
         </View>
     )
@@ -92,7 +102,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fefffe',
     },
     safeArea: {
-        paddingTop: 40,
+        paddingTop: Platform.OS === "ios" ? 55 : 40,
         paddingBottom: 18,
         borderBottomColor: "black",
         borderBottomWidth: 1,
@@ -102,22 +112,48 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         borderBottomWidth: 1,
-        borderBottomColor: "grey",
+        borderBottomColor: "#c8c7cc",
         paddingVertical: 10,
         paddingHorizontal: 5,
         alignItems: "center"
     },
     lineh1: {
-        fontSize: 18,
+        fontSize: 13,
+        marginBottom: 3,
+        fontWeight: "bold",
         textTransform: "uppercase",
+    },
+    h1wrapper: {
         borderBottomWidth: 1,
         borderBottomColor: "black"
     },
     kasten: {
         marginTop: 25,
-        marginHorizontal: 25
+        marginHorizontal: 27
     },
     linePoint: {
-        fontSize: 14
+        fontSize: 15
+    },
+    name: {
+        fontSize: 14,
+        textTransform: "uppercase",
+        color: "#3a3938",
+        fontWeight: "bold"
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 10
+    },
+    logo: {
+        fontSize: 26,
+        paddingHorizontal: 27,
+        marginBottom: 17,
+        color: "#3a3938"
+    },
+    logoContainer: {
+        marginTop: 30,
+        marginBottom: 30,
+        alignItems: "center"
     }
   });

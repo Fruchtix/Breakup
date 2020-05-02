@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     colorTop: {
         paddingTop: Platform.OS === "android" ? 30 : 40,
         paddingBottom: 25,
-        backgroundColor: "#ebe7e4",
+        backgroundColor: "#faf7f2",
         marginBottom: 28,
     },
     headline: {
