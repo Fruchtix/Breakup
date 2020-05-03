@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet, Image, ScrollView, Platform } from 'react-native'
 import WeekPreview from '../components/WeekPreview'
 import programm from '../data/programm.json'
-import LinearGradient from "react-native-linear-gradient";
 
 export default function ProgrammScreen(props) {
     const [currentExercise, setCurrentExercise ] = useState(4)
 
     return (
-        <LinearGradient colors={[
-            "#fefffe",
-            "green"
-          ]}>
         <ScrollView style={{backgroundColor: "#fefffe"}} showsVerticalScrollIndicator={false} >
             <View style={styles.container}>
                 {/* Image */}
@@ -19,7 +14,7 @@ export default function ProgrammScreen(props) {
                     <Image
                         style={styles.headerImage}
                         source={require("../../assets/meditate.png")}
-                        resizeMode="cover"
+                        resizeMode="contain"
                     />
                 </View>
 
@@ -46,7 +41,6 @@ export default function ProgrammScreen(props) {
                 </View>
             </View>
         </ScrollView>
-        </LinearGradient>
     )
 }
 

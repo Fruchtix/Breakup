@@ -10,7 +10,8 @@ export default function HelpScreen(props) {
                 {/* Image */}
                 <ImageBackground
                     style={styles.headerImage}
-                    source={require("../../assets/medicine.png")}
+                    resizeMode="contain"
+                    source={require("../../assets/book.png")}
                 >
                     <View style={styles.infoWrapper}>
                         <View style={[styles.infoInnerWrapper, styles.shadow]}>
@@ -56,10 +57,12 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingBottom: 50,
       backgroundColor: '#faf7f2',
+      marginTop: Platform.OS === "ios" ? 50 : 35,
     },
     headerImage: {
+        backgroundColor: "#fefffe",
         width: "100%",
-        height: 300,
+        height: 230,
         marginBottom: 25
     },
     infoWrapper: {
@@ -68,10 +71,10 @@ const styles = StyleSheet.create({
         alignItems: "flex-start"
     },
     infoInnerWrapper: {
-        padding: 8,
+        padding: 9,
         backgroundColor: "#5a5857",
         borderRadius: 8,
-        opacity: 0.9
+        opacity: 0.95
     },
     h1: {
         color: "#fefffe",

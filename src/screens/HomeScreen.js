@@ -73,18 +73,18 @@ export default function HomeScreen(props) {
                 <Text style={styles.logo}>Break/<Text style={{color: "#f47d31"}}>up</Text></Text>
 
                 {/* Next Lesson */}
-                <View style={{marginHorizontal: 23}}>
-                    <View style={[ {padding: 5, borderRadius: 8, marginBottom: 35, overflow: "hidden"}, styles.shadow]}>
-                        <ImageBackground
+                <View style={{marginHorizontal: 27}}>
+                    <View style={[ {borderRadius: 8, marginBottom: 35, overflow: "hidden",padding: Platform.OS === "ios" ? 5 : 0}, styles.shadow2]}>
+                        <Image
                             style={[styles.headerImage]}
-                            resizeMode="cover"
+                            resizeMode="contain"
                             source={require("../../assets/meditate.png")}
-                        >
-                        </ImageBackground>
+                        />
+                        {/* </ImageBackground> */}
                     </View>
 
                     <TouchableWithoutFeedback onPress={() => props.navigation.navigate("ProgrammScreen")}>
-                        <View style={[styles.btnWrapper, {top: 190, elevation: 10}]}>
+                        <View style={[styles.btnWrapper, {top: 185, elevation: 10}]}>
                             <View style={[styles.btn, styles.shadow]}>
                                 <Icon name={"play"} size={24} color={"#f9f7f3"} />
                                 <Text style={styles.btnTxt}>Programm {currentExercise === 0 || currentWeek === 1 ? "starten" : "fortsetzen"}</Text>
@@ -202,9 +202,9 @@ const styles = StyleSheet.create({
     headerImage: {
         width: "100%",
         height: 210,
-        zIndex: 1,
         overflow: "hidden",
-        borderRadius: 8
+        borderRadius: 18,
+        backgroundColor: "#fefffe"
         // borderWidth: 1,
         // borderColor: "#f47d31",
     },
@@ -294,6 +294,17 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
 
         elevation: 5,
+    },
+    shadow2: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
     },
     registerBtn: {
         backgroundColor: "#7e004c",

@@ -6,7 +6,7 @@ export default function GoBackHeader(props) {
     return ( 
         <View style={styles.goBack}>
             <TouchableWithoutFeedback
-                hitSlop={{top: 7, right: 7, left: 7, bottom: 7}}
+                hitSlop={{top: 10, right: 10, left: 10, bottom: 10}}
                 onPress={() => props.navigation.goBack()}>
                     <Icon name="chevron-left" size={32} color={props.color ? props.color : "#5A6174"} />
             </TouchableWithoutFeedback>

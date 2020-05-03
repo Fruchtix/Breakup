@@ -13,6 +13,7 @@
     "expo": "~37.0.3",
     "expo-av": "^8.1.0",
     "expo-font": "^8.1.0",
+    "expo-in-app-purchases": "~8.1.0",
     "firebase": "^7.9.0",
     "lodash": "^4.17.15",
     "react": "~16.9.0",
@@ -31,7 +32,7 @@
     "react-navigation": "^4.3.7",
     "react-navigation-stack": "^2.3.11",
     "react-navigation-tabs": "^2.8.11",
-    "expo-in-app-purchases": "~8.1.0"
+    "expo-linear-gradient": "~8.1.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",

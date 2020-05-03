@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback, Image } from 'react-native'
 import {Feather as Icon} from '@expo/vector-icons'
 
 export default function ProfileScreen(props) {
@@ -10,6 +10,14 @@ export default function ProfileScreen(props) {
             </View>
 
             <ScrollView showsVerticalScrollIndicator={false}>
+                <View>
+                    <Image
+                        style={[styles.headerImage]}
+                        resizeMode="contain"
+                        source={require("../../assets/private.png")}
+                    />
+                </View>
+
                 <View style={styles.kasten}>
                     <View style={styles.h1wrapper}>
                         <Text style={styles.lineh1}>Profil</Text>
@@ -52,7 +60,7 @@ export default function ProfileScreen(props) {
                     </TouchableWithoutFeedback>
                 </View>
 
-                <View style={styles.kasten}>
+                <View style={[styles.kasten, {marginBottom: 40}]}>
                 <View style={styles.h1wrapper}>
                         <Text style={styles.lineh1}>Rechtliches</Text>
                     </View>
@@ -155,5 +163,10 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 30,
         alignItems: "center"
+    },
+    headerImage: {
+        height: 200,
+        width: "100%",
+        marginBottom: -5
     }
   });
