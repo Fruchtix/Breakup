@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, ActivityIndicator, Text, View, TextInput, Keyboard, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, ActivityIndicator, Text, View, TextInput, Keyboard, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import * as firebase from 'firebase'
 import {validate} from '../../utilities/ValidateInput'
 
@@ -38,7 +38,12 @@ export default class LogInScreen extends Component {
         }
 
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "padding"}
+                style={styles.container}
+                enabled={Platform.OS === "ios" ? true : false}
+            >
+                <View style={{paddingBottom: 35, flex: 1}}>
                 <GoBackHeader navigation={this.props.navigation} />
                 <View style={styles.content}>
                     <Text style={styles.headline}>Login</Text>
@@ -70,7 +75,7 @@ export default class LogInScreen extends Component {
                     </View> : null}
 
                     <TouchableOpacity 
-                        style={{alignItems: "center", marginTop: 5}}
+                        style={{alignItems: "center", marginTop: 6}}
                         onPress={() => this.props.navigation.navigate('ResetPassword')}
                     >
                         <Text style={{color: "#df9401", marginTop: 2}}>Passwort vergessen?</Text>
@@ -78,7 +83,7 @@ export default class LogInScreen extends Component {
 
                     <View style={styles.submitBtnWrapper}>
                         <TouchableOpacity 
-                            style={[styles.submitBtn, !(validate("email", this.state.email)) || !(validate("password", this.state.password)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
+                            style={[styles.submitBtn, !(validate("email", this.state.email)) || !(validate("password", this.state.password)) ? {backgroundColor: "#bdbfc8"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("email", this.state.email)) || !(validate("password", this.state.password))}
                             onPress={() => {this.validateUser(), Keyboard.dismiss(), this.setState({showActivityIndicator: true})}}>
                                 {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
@@ -86,7 +91,8 @@ export default class LogInScreen extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+                </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -94,9 +100,9 @@ export default class LogInScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        marginBottom: 35,
-        paddingTop: 25
+        backgroundColor: '#fefffe',
+        paddingBottom: 35,
+        paddingTop: Platform.OS === "ios" ? 40 : 30
     },
     headline: {
         alignSelf: "center",

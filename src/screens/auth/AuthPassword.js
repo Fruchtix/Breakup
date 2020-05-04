@@ -17,7 +17,12 @@ export default class AuthPassword extends Component {
         const {navigate} = this.props.navigation;
 
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "padding"}
+                style={styles.container}
+                enabled={Platform.OS === "ios" ? true : false}
+            >
+                <View style={{paddingBottom: 35, flex: 1}}>
                 <GoBackHeader navigation={this.props.navigation} />
                 <View style={[styles.content, {marginTop: 40}]}>
                     <Text style={styles.headline}>Wähle ein Passwort</Text>
@@ -43,7 +48,7 @@ export default class AuthPassword extends Component {
 
                     <View style={styles.submitBtnWrapper}>
                         <TouchableOpacity 
-                            style={[styles.submitBtn, !(validate("password", this.state.password)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
+                            style={[styles.submitBtn, !(validate("password", this.state.password)) ? {backgroundColor: "#bdbfc8"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("password", this.state.password))}
                             onPress={() => navigate('AuthRegister', {password: this.state.password})}>
                             <Text style={styles.btnText}>Weiter</Text>
@@ -51,6 +56,7 @@ export default class AuthPassword extends Component {
                     </View>
                 </View>
             </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -61,9 +67,9 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingBottom: 40,
-        paddingTop: 25
+        backgroundColor: '#fefffe',
+        paddingBottom: 35,
+        paddingTop: Platform.OS === "ios" ? 40 : 30
     },
     headline: {
         alignSelf: "center",

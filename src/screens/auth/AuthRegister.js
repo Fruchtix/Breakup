@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Image, Keyboard, ActivityIndicator, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Image, Keyboard, ActivityIndicator, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 import {validate} from '../../utilities/ValidateInput'
 import GoBackHeader from '../../components/GoBackHeader';
+import { SplashScreen } from 'expo';
 
 export default class AuthRegister extends Component {
     constructor() {
@@ -20,7 +21,7 @@ export default class AuthRegister extends Component {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             // .then(() => this.sendVerificationEmail())
             .then(() => this.updateUserProfile())
-            .then(() => this.setState({showActivityIndicator: false}))
+            // .then(() => this.setState({showActivityIndicator: false}))
             .catch((error) => {
             // Handle Errors here.
             var errorMessage = error.message;
@@ -64,7 +65,12 @@ export default class AuthRegister extends Component {
 
         const {navigate} = this.props.navigation;
         return (
-            <View style={styles.container} >
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "padding"}
+                style={styles.container}
+                enabled={Platform.OS === "ios" ? true : false}
+            >
+                <View style={{paddingBottom: 35, flex: 1}}>
                 <GoBackHeader navigation={this.props.navigation} />
                 <View style={[styles.content, {marginTop: 40}]}>
                     <Text style={styles.headline}>Wie lautet deine Email?</Text>
@@ -87,16 +93,16 @@ export default class AuthRegister extends Component {
                     <View style={styles.documents}>
                         <Text>
                             <Text style={{fontSize: 13}}>Wenn du auf "Registrierung abschließen" tippst, bestätigst du, dass du die </Text>
-                            <Text onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "datenschutz", color: "#fff"})}} style={{color: "#feaf15",fontSize: 13}}>Datenschutzbestimmungen</Text>
+                            <Text onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "datenschutz", color: "#fff"})}} style={{color: "#f47d31",fontSize: 13}}>Datenschutzbestimmungen</Text>
                             <Text style={{fontSize: 13}}> gelesen hast und dass du den </Text> 
-                            <Text onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "agb", color: "#fff"})}} style={{color: "#feaf15",fontSize: 13}}>AGB's</Text>
+                            <Text onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "agb", color: "#fff"})}} style={{color: "#f47d31",fontSize: 13}}>AGB's</Text>
                             <Text style={{fontSize: 13}}> zustimmst.</Text>
                         </Text>
                     </View>
 
                     <View style={styles.submitBtnWrapper}>
                         <TouchableOpacity 
-                            style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
+                            style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#bdbfc8"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("email", this.state.email))}
                             onPress={() => {this.createUser(this.state.email, password), Keyboard.dismiss()}}>
                                     {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
@@ -105,6 +111,7 @@ export default class AuthRegister extends Component {
                     </View>
                 </View>
             </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -112,9 +119,9 @@ export default class AuthRegister extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        paddingBottom: 40,
-        paddingTop: 25
+        backgroundColor: '#fefffe',
+        paddingBottom: 35,
+        paddingTop: Platform.OS === "ios" ? 40 : 30
     },
     headline: {
         alignSelf: "center",

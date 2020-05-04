@@ -31,7 +31,12 @@ export default class ResetPassword extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS == "ios" ? "padding" : "padding"}
+                style={styles.container}
+                enabled={Platform.OS === "ios" ? true : false}
+            >
+                <View style={{paddingBottom: 35, flex: 1}}>
                 <GoBackHeader navigation={this.props.navigation} />
                 <View style={[styles.content, {marginTop: 40}]}>
                     <Text style={styles.headline}>Passwort zurücksetzen</Text>
@@ -57,7 +62,7 @@ export default class ResetPassword extends Component {
 
                     <View style={styles.submitBtnWrapper}>
                         <TouchableOpacity 
-                            style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#ddd"} : {backgroundColor: "#5A6174"}]}
+                            style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#bdbfc8"} : {backgroundColor: "#5A6174"}]}
                             disabled={!(validate("email", this.state.email))}
                             onPress={() => this.sendPasswordResetEmail(this.props.navigation)}>
                                 {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
@@ -66,6 +71,7 @@ export default class ResetPassword extends Component {
                     </View>
                 </View>
             </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -76,9 +82,9 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        marginBottom: 35,
-        paddingTop: 25
+        backgroundColor: '#fefffe',
+        paddingBottom: 35,
+        paddingTop: Platform.OS === "ios" ? 40 : 30
     },
     headline: {
         alignSelf: "center",

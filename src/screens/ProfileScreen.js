@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView, TouchableWithoutFeedback, Image } from 'react-native'
 import {Feather as Icon} from '@expo/vector-icons'
+import * as firebase from 'firebase'
 
 export default function ProfileScreen(props) {
     return (
@@ -8,6 +9,16 @@ export default function ProfileScreen(props) {
             <View style={styles.safeArea}>
                 <Text style={styles.name}>Profil</Text>
             </View>
+
+            <TouchableWithoutFeedback onPress={() => {
+                firebase.auth().signOut().then(function() {
+                    // Sign-out successful.
+                  }, function(error) {
+                    // An error happened.
+                  });
+            }}>
+                <Text>Ausloggen</Text>
+            </TouchableWithoutFeedback>
 
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View>

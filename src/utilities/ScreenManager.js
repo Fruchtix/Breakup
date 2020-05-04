@@ -2,18 +2,21 @@ import React from 'react';
 import { StyleSheet, Platform, YellowBox, View, Text } from 'react-native';
 import MainNavigator from '../navigation/MainNavigator'
 import AuthNavigator from '../navigation/AuthNavigator'
-import SplashScreen from '../screens/SplashScreen'
+// import SplashScreen from '../screens/SplashScreen'
 import * as Font from 'expo-font';
 import _ from 'lodash';
 // import * as RNIap from 'react-native-iap';
 import * as firebase from "firebase";
 import "firebase/firestore";
 import * as InAppPurchases from 'expo-in-app-purchases'
+import { SplashScreen } from 'expo';
 
 
 class ScreenManager extends React.Component {
     constructor(props) {
       super(props);
+
+      SplashScreen.preventAutoHide();
 
       this.state ={ 
           loggedInStatus: '',
@@ -115,10 +118,9 @@ class ScreenManager extends React.Component {
     else if (this.state.loggedInStatus === 'loggedOut' && this.state.fontLoaded) {
         return (
             <AuthNavigator />
-            // <MainNavigator screenProps={{name: this.state.name}} />
         )
-      }
-      return <SplashScreen />
+    }
+    return null
     }
 }
 

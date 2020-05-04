@@ -1,28 +1,41 @@
-import React from 'react'
-import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
+import React, {useEffect} from 'react'
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback, Platform } from 'react-native'
+import {Feather as Icon} from '@expo/vector-icons'
+import { SplashScreen } from 'expo';
 
 export default function AuthWelcome(props) {
+
     return (
         <View style={styles.container}>
-            <Image
-                style={styles.headerImage}
-                source={{uri: 'https://reactnative.dev/img/tiny_logo.png',}}
-            />
 
             <View style={styles.infos}>
-                <Text>Bitte registriere dich ...</Text>
-                <View>
-                    <Text>... um deinen Trennung zu überwinden</Text>
-                    <Text>... um deinen Fortschritt zu verfolgen</Text>
-                    <Text>... um dein Programm und Übungen zu bekommen</Text>
-                </View>
+                <Text style={styles.logo}>Break/<Text style={{color: "#f47d31"}}>up</Text></Text>
+            </View>
+
+            {/* Headline */}
+            <View style={styles.headlineWrapper}>
+                <Text style={styles.headline}>Lass uns heute etwas für</Text>
+                <Text style={styles.headline}>dein Herz tun</Text>
+            </View>
+
+            <View style={styles.imageContainer}>
+                <Image
+                    style={styles.headerImage}
+                    resizeMode="contain"
+                    source={require("../../../assets/meditate.png")}
+                    onLoadEnd={() => {
+                        // wait for image's content to fully load [`Image#onLoadEnd`] (https://facebook.github.io/react-native/docs/image#onloadend)
+                        SplashScreen.hide(); // Image is fully presented, instruct SplashScreen to hide
+                    }}
+                />
             </View>
 
             <View style={styles.buttons}>
-                <TouchableWithoutFeedback onPress={() => props.navigation.navigate("AuthPassword")}>
-                    <View style={styles.registerBtnContainer}>
-                        <View style={[styles.shadow,styles.registerBtn]}>
-                            <Text style={styles.registerTxt}>jetzt registrieren</Text>
+                <TouchableWithoutFeedback style={{alignItems: "center", justifyContent: "center"}} onPress={() => props.navigation.navigate("AuthPassword")}>
+                    <View style={[styles.shadow, {marginBottom: 12}]}>
+                        <View style={[styles.buyButton, styles.shadow]}>
+                            <Text style={styles.btnTxt}>Jetzt registrieren</Text>
+                            {/* <Icon name="chevron-right" size={23} color="#f9f7f3" /> */}
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
@@ -42,36 +55,36 @@ export default function AuthWelcome(props) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
-      paddingBottom: 60
+      backgroundColor: '#fefffe',
+      paddingBottom: 70
     },
     headerImage: {
         width: "100%",
-        height: 230,
+        height: "100%",
     },
     registerBtn: {
-        backgroundColor: "#7e004c",
-        paddingVertical: "3%",
-        paddingHorizontal: "15%",
-        borderRadius: 5,
+        paddingVertical: 14,
+        width: "70%",
+        borderRadius: 50,
         overflow: "hidden",
+        backgroundColor: "#586077",
         alignItems: "center",
         margin: 3
     },
     registerTxt: {
         textTransform: "uppercase",
-        color: "#fefffe",
+        color: "#f9f7f3",
     },
     registerBtnContainer: {
         alignItems: "center",
         marginBottom: 10
     },
     logInBtn: {
-        borderBottomColor: "#000",
+        borderBottomColor: "#666",
         borderBottomWidth: 1
     },
     logIntxt: {
-        color: "#000",
+        color: "#666",
         textTransform: "uppercase",
     },
     shadow: {
@@ -86,12 +99,52 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     buttons: {
-        flex: 1,
-        justifyContent: "flex-end"
+        // flex: 1,
+        // justifyContent: "flex-end",
+        paddingTop: 25,
+        paddingBottom: 20,
+        alignItems: "center"
     },
     infos: {
-        flex: 2,
-        justifyContent: "center",
+        alignItems: "center",
+        marginTop: Platform.OS === "ios" ? 60 : 45,
+        marginBottom: 18
+    },
+    imageContainer: {
+        flex: 3,
+        alignItems: "center",
+    },
+    headlineWrapper: {
         alignItems: "center"
-    }
+    },
+    headline: {
+        fontSize: 25,
+        color: "#5A6176",
+        lineHeight: 30
+    },
+    logo: {
+        fontSize: 26,
+        paddingHorizontal: 27,
+        marginBottom: 17,
+        color: "#3a3938"
+    },
+    buyButton: {
+        borderRadius: 50,
+        overflow: 'hidden',
+        alignItems: 'center',
+        flexDirection: "row",
+        backgroundColor: "#5A6176",
+        paddingVertical: 12,
+        paddingHorizontal: "15%",
+        marginTop: 18,
+        justifyContent: "space-between"
+    },
+    btnTxt: {
+        textTransform: "uppercase",
+        color: "#f9f7f3",
+        // paddingLeft: 5,
+        fontWeight: "bold",
+        fontSize: 14.5,
+        // paddingLeft: 5
+    },
   });

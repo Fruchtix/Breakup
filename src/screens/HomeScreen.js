@@ -6,7 +6,7 @@ import helpLessons from '../data/help.json'
 import programm from '../data/programm.json'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
-
+import { SplashScreen } from 'expo';
 
 export default function HomeScreen(props) {
     const [currentExercise, setcurrentExercise] = useState(0)
@@ -24,24 +24,24 @@ export default function HomeScreen(props) {
                     setcurrentExercise(doc.data().currentLesson)
                     setcurrentWeek(doc.data().currentCourse)
                 } else {
-                    setcurrentExercise("7")
-                    setcurrentWeek("7")
+                    setcurrentExercise("0")
+                    setcurrentWeek("1")
                 }
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             });
 
-        firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
-            .then((doc) => {
-                if (doc.exists) {
-                    const ok = parseDate(doc.data().breakupDate)
-                    setBreakupDate(DifferenceInDays(ok, new Date()))
-                } else {
-                    console.log("error")
-                }
-            }).catch(function(error) {
-                console.log("Error getting document:", error);
-            });
+        // firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
+        //     .then((doc) => {
+        //         if (doc.exists) {
+        //             const ok = parseDate(doc.data().breakupDate)
+        //             setBreakupDate(DifferenceInDays(ok, new Date()))
+        //         } else {
+        //             console.log("error")
+        //         }
+        //     }).catch(function(error) {
+        //         console.log("Error getting document:", error);
+        //     });
 
         let one = Math.round(Math.random() * 1)
         let two = Math.round(Math.random() * 3)
@@ -55,13 +55,13 @@ export default function HomeScreen(props) {
         setRandomOne(one)  
         setRandomeTwo(two)  
         setRandomeThree(three)  
-        setRandomeFour(four)  
+        setRandomeFour(four) 
     }, [])
 
-    function parseDate(str) {
-        var mdy = str.split('/');
-        return new Date(mdy[2], mdy[1]-1, mdy[0]);
-    }
+    // function parseDate(str) {
+    //     var mdy = str.split('/');
+    //     return new Date(mdy[2], mdy[1]-1, mdy[0]);
+    // }
 
     function DifferenceInDays(firstDate, secondDate) {
         return Math.round((secondDate-firstDate)/(1000*60*60*24));
@@ -137,6 +137,10 @@ export default function HomeScreen(props) {
                             style={styles.profileImage}
                             resizeMode="cover"
                             source={require("../../assets/women.png")}
+                            onLoadEnd={() => {
+                                // wait for image's content to fully load [`Image#onLoadEnd`] (https://facebook.github.io/react-native/docs/image#onloadend)
+                                SplashScreen.hide(); // Image is fully presented, instruct SplashScreen to hide
+                            }}
                         />
                         <Text style={styles.abouth2}>Prof. Dr. Breakup</Text>
                         <Text style={[styles.aboutTxt, {marginBottom: 11}]}>Breakup ist eine wirklich tolle app, das musst du jetzt einfach glauben! Bitte gib mir dein Geld, Danke!</Text>
