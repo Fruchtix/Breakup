@@ -28,7 +28,13 @@
     },
     "android": {
       "package": "com.fruchtiapps.breakup",
-      "versionCode": 1
+      "versionCode": 1,
+      "icon": "./assets/icon.png",
+      "splash": {
+        "image": "./assets/logo2.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#faf7f2"
+      }
     }
   }
 }
