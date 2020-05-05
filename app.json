@@ -24,11 +24,17 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.fruchtiapps.breakup",
-      "buildNumber": "1.0.0"
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "UIBackgroundModes": [
+          "audio"
+        ]
+      }
     },
     "android": {
       "package": "com.fruchtiapps.breakup",
       "versionCode": 1,
+      "permissions": [],
       "icon": "./assets/icon.png",
       "splash": {
         "image": "./assets/logo2.png",
