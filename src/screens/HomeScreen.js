@@ -6,7 +6,7 @@ import helpLessons from '../data/help.json'
 import programm from '../data/programm.json'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
-import { SplashScreen } from 'expo';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function HomeScreen(props) {
     const [currentExercise, setcurrentExercise] = useState(0)
@@ -30,6 +30,10 @@ export default function HomeScreen(props) {
             }).catch(function(error) {
                 console.log("Error getting document:", error);
             });
+        
+            setTimeout(async () => {
+                await SplashScreen.hideAsync();
+              }, 400);
 
         // firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).get()
         //     .then((doc) => {
@@ -137,10 +141,6 @@ export default function HomeScreen(props) {
                             style={styles.profileImage}
                             resizeMode="cover"
                             source={require("../../assets/women.png")}
-                            onLoadEnd={() => {
-                                // wait for image's content to fully load [`Image#onLoadEnd`] (https://facebook.github.io/react-native/docs/image#onloadend)
-                                SplashScreen.hide(); // Image is fully presented, instruct SplashScreen to hide
-                            }}
                         />
                         <Text style={styles.abouth2}>Breakup Programm</Text>
                         <Text style={[styles.aboutTxt, {marginBottom: 11}]}>Breakup ist eine wirklich tolle app, das musst du jetzt einfach glauben! Bitte gib mir dein Geld, Danke!</Text>
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fefffe',
-      paddingTop: Platform.OS === "ios" ? 35 : 25,
+      paddingTop: Platform.OS === "ios" ? 35 : 9,
     },
     btn: {
         borderRadius: 20,

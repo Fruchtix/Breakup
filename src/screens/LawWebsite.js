@@ -33,7 +33,7 @@ export default class LawWebsite extends Component {
 
 const styles = StyleSheet.create({
     colorTop: {
-        paddingTop: Platform.OS === "android" ? 25 : 40,
+        paddingTop: Platform.OS === "android" ? 13 : 40,
         paddingBottom: 25,
         backgroundColor: "#EBE7E4",
     },

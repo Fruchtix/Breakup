@@ -9,14 +9,10 @@ import _ from 'lodash';
 import * as firebase from "firebase";
 import "firebase/firestore";
 import * as InAppPurchases from 'expo-in-app-purchases'
-import { SplashScreen } from 'expo';
-
 
 class ScreenManager extends React.Component {
     constructor(props) {
       super(props);
-
-      SplashScreen.preventAutoHide();
 
       this.state ={ 
           loggedInStatus: '',
@@ -71,30 +67,36 @@ class ScreenManager extends React.Component {
 
     connectToPayment = async() => {
       return new Promise(async(resolve, reject) => {
-          const history = await InAppPurchases.connectAsync()
-          if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
-            //If User bought something get current date and check if still valid
-            
-            history.results.forEach(async(result) => {
-              console.log("item gekauft")
-              if(result.acknowledged){
-                if((result.productId === items[0]))
-                  //Premium User
-                  console.log("ist premium")
-                  await this.setState({premium: true})
-                  resolve("SUCCESS")
-                }
-            })
-            //No Item is Valid -> normal user
-            if(this.state.premium === null) {
-              this.setState({premium: false}, () => {
-                resolve("SUCCESS")
+          try {
+            const history = await InAppPurchases.connectAsync().catch(() => console.log("----lol"))
+
+            if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
+              //If User bought something get current date and check if still valid
+              
+              history.results.forEach(async(result) => {
+                console.log("item gekauft")
+                if(result.acknowledged){
+                  if((result.productId === items[0]))
+                    //Premium User
+                    console.log("ist premium")
+                    await this.setState({premium: true})
+                    resolve("SUCCESS")
+                  }
               })
+              //No Item is Valid -> normal user
+              if(this.state.premium === null) {
+                this.setState({premium: false}, () => {
+                  resolve("SUCCESS")
+                })
+              } else {
+                resolve("SUCCESS")
+              }
             } else {
-              resolve("SUCCESS")
+              console.log("cant connect")
+              reject("FAILURE")
             }
-          } else {
-            console.log("cant connect")
+          } catch(e) {
+            console.log("cant connect RN")
             reject("FAILURE")
           }
       })

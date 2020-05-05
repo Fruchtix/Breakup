@@ -4,8 +4,10 @@ import * as firebase from 'firebase'
 import {firebaseConfig} from './src/utilities/fireConfig'
 
 import ScreenManager from './src/utilities/ScreenManager'
+import * as SplashScreen from 'expo-splash-screen';
 
 firebase.initializeApp(firebaseConfig)
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   return (

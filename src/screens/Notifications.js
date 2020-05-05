@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     colorTop: {
-        paddingTop: Platform.OS === "android" ? 30 : 40,
+        paddingTop: Platform.OS === "android" ? 13 : 40,
         paddingBottom: 25,
         backgroundColor: "#ebe7e4",
         marginBottom: 28,

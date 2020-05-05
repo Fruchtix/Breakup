@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         alignContent: "flex-start",
         width: "100%",
         flexDirection: 'row',
-        paddingHorizontal: 10,
+        paddingHorizontal: 12,
         paddingTop: 10,
     },
 })

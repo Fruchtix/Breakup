@@ -1,9 +1,14 @@
 import React, {useEffect} from 'react'
 import { View, Text, StyleSheet, Image, TouchableWithoutFeedback, Platform } from 'react-native'
 import {Feather as Icon} from '@expo/vector-icons'
-import { SplashScreen } from 'expo';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function AuthWelcome(props) {
+    useEffect(() => {
+        setTimeout(async () => {
+            await SplashScreen.hideAsync();
+          }, 400);
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -23,10 +28,6 @@ export default function AuthWelcome(props) {
                     style={styles.headerImage}
                     resizeMode="contain"
                     source={require("../../../assets/meditate.png")}
-                    onLoadEnd={() => {
-                        // wait for image's content to fully load [`Image#onLoadEnd`] (https://facebook.github.io/react-native/docs/image#onloadend)
-                        SplashScreen.hide(); // Image is fully presented, instruct SplashScreen to hide
-                    }}
                 />
             </View>
 
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     },
     infos: {
         alignItems: "center",
-        marginTop: Platform.OS === "ios" ? 60 : 45,
+        marginTop: Platform.OS === "ios" ? 60 : 35,
         marginBottom: 18
     },
     imageContainer: {

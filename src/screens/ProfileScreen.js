@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fefffe',
     },
     safeArea: {
-        paddingTop: Platform.OS === "ios" ? 55 : 40,
+        paddingTop: Platform.OS === "ios" ? 55 : 18,
         paddingBottom: 18,
         borderBottomColor: "black",
         borderBottomWidth: 1,

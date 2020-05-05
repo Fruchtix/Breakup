@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     headerImage: {
         width: "100%",
         height: 230,
-        marginTop: Platform.OS === "ios" ? 50 : 35
+        marginTop: Platform.OS === "ios" ? 50 : 20
     },
     imageWrapper: {
         backgroundColor: "#fff",

@@ -327,7 +327,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         width: "100%",
         paddingHorizontal: 18,
-        marginTop: Platform.OS === 'android' ? 38 : 50,
+        marginTop: Platform.OS === 'android' ? 30 : 50,
     },
     buttonInnerWrapper: {
         width: 110,

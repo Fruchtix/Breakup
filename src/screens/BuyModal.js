@@ -23,7 +23,7 @@ export default class BuyModal extends Component {
         const { responseCode, results } = await InAppPurchases.getProductsAsync(items);
         if (responseCode === InAppPurchases.IAPResponseCode.OK) {
             // setIcons({ items: results });
-            console.log(results)
+            console.log("Produkte: ",results)
             // To replace an existing subscription on Android
             await InAppPurchases.purchaseItemAsync(items[type]);
             this.props.navigation.goBack()
@@ -37,7 +37,7 @@ export default class BuyModal extends Component {
         const screenHeight = Math.round(Dimensions.get('window').height);
         return (
                 <View style={styles.safeArea}>
-                    <View style={{marginTop: 50}}>
+                    <View style={{marginTop: 25}}>
                         <ImageBackground
                             style={[styles.headerImage]}
                             resizeMode="contain"
@@ -52,7 +52,7 @@ export default class BuyModal extends Component {
                     </View>
 
                     <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-                    <View style={[styles.container, {height: (screenHeight - 120)}]}>
+                    <View style={[styles.container, {height: (screenHeight - 110)}]}>
                         <View style={{borderBottomWidth: 1, alignItems: "center", paddingBottom: 3, paddingTop: 14, borderBottomColor: "#413d45"}}>
                             <Text style={styles.h1}>Breakup-Programm</Text>
                         </View>

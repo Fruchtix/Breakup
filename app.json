@@ -41,6 +41,7 @@
         "resizeMode": "contain",
         "backgroundColor": "#faf7f2"
       }
-    }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }

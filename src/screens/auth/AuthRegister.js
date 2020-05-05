@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fefffe',
         paddingBottom: 35,
-        paddingTop: Platform.OS === "ios" ? 40 : 30
+        paddingTop: Platform.OS === "ios" ? 40 : 13
     },
     headline: {
         alignSelf: "center",

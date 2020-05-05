@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingBottom: 50,
       backgroundColor: '#faf7f2',
-      marginTop: Platform.OS === "ios" ? 50 : 35,
+      marginTop: Platform.OS === "ios" ? 50 : 13,
     },
     headerImage: {
         backgroundColor: "#fefffe",
