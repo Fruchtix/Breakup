@@ -36,11 +36,15 @@ class ScreenManager extends React.Component {
       }
     }
 
+    componentWillUnmount = async() => {
+      await InAppPurchases.disconnectAsync();
+    }
+
     componentDidMount() {
       this.checkIfloggedIn()
       Font.loadAsync({
-        // 'Poppins-Light': require('../../assets/fonts/Poppins-Light.ttf'),
-        // 'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
+        // 'Avenir': require('../../assets/fonts/AvenirLTStd-Medium.otf'),
+        'Roboto-Medium': require('../../assets/fonts/Roboto-Medium.ttf'),
       }).then(() => this.setState({ fontLoaded: true }));
     }
 
@@ -50,7 +54,9 @@ class ScreenManager extends React.Component {
           firebase.firestore().collection("users").doc(user.uid).get()
                 .then(async(doc) => {
                     if (doc.exists) {
-                        this.setState({name: doc.data().first})
+                        // this.setState({name: doc.data().first})
+                        await Promise.all([this.connectToPayment()])
+                        this.setPurchaseListener()
                         this.setState({loggedInStatus: 'loggedIn', emailVerified: user.emailVerified})
                     } else {
                         this.setState({loggedInStatus: 'loggedOut'})
@@ -68,24 +74,11 @@ class ScreenManager extends React.Component {
           const history = await InAppPurchases.connectAsync()
           if (history.responseCode === InAppPurchases.IAPResponseCode.OK) {
             //If User bought something get current date and check if still valid
-            let monthly
-            let yearly
-            var getNow = firebase.functions().httpsCallable('getCurrentDate')
-            await getNow()
-              .then((response) => {
-                  monthly = new Date(response.data)
-                  yearly = new Date(response.data)
-                  monthly=new Date(monthly.setMonth(monthly.getMonth() - 1))
-                  yearly = new Date(yearly.setFullYear(yearly.getFullYear() - 1))
-              })
-              .catch((error) => {
-                  console.log(error.message)
-              })
             
             history.results.forEach(async(result) => {
               console.log("item gekauft")
               if(result.acknowledged){
-                if((result.productId === items[0] && result.purchaseTime > monthly.getTime()) || (result.productId === items[1] && result.purchaseTime > yearly.getTime()))
+                if((result.productId === items[0]))
                   //Premium User
                   console.log("ist premium")
                   await this.setState({premium: true})
@@ -106,6 +99,35 @@ class ScreenManager extends React.Component {
           }
       })
     }
+
+    setPurchaseListener = async() => {
+      // Set purchase listener
+      InAppPurchases.setPurchaseListener(({ responseCode, results, errorCode }) => {
+          // Purchase was successful
+          if (responseCode === InAppPurchases.IAPResponseCode.OK) {
+              results.forEach(purchase => {
+                  if (!purchase.acknowledged) {
+                      console.log(`Successfully purchased ${purchase.productId}`);
+                      // Process transaction here and unlock content...
+                      console.log("unlock premium...")
+                      this.setState({premium: true})
+  
+                      // Then when you're done
+                      InAppPurchases.finishTransactionAsync(purchase, false);
+                      console.log("Transaction finito")
+                  }
+              });
+          }
+          // Else find out what went wrong
+           else if (responseCode === InAppPurchases.IAPResponseCode.USER_CANCELED) {
+              console.log('User canceled the transaction');
+          } else if (responseCode === InAppPurchases.IAPResponseCode.DEFERRED) {
+              console.log('User does not have permissions to buy but requested parental approval (iOS only)');
+          } else {
+              console.warn(`Something went wrong with the purchase. Received errorCode ${errorCode}`);
+          }
+      })
+  }
   
     render() {
       if (this.state.loggedInStatus === 'loggedIn' && this.state.fontLoaded) {

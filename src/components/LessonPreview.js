@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, StyleSheet, TouchableWithoutFeedback, Platform } from 'react-native'
 import {Feather as Icon} from '@expo/vector-icons'
 import Svg, { Circle, Polygon } from 'react-native-svg'
 
@@ -7,8 +7,8 @@ export default function LessonPreview(props) {
     return (
         <View style={styles.container}>
             <View style={{maxWidth: "80%"}}>
-                <Text>{props.headline}</Text>
-                <Text>{props.description}</Text>
+                <Text style={styles.h1}>{props.headline}</Text>
+                <Text style={styles.h2}>{props.description}</Text>
             </View>
             {
                 props.free || props.premium ?  /* oder premium */
@@ -63,5 +63,15 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
 
         elevation: 5,
+    },
+    h1: {
+        marginBottom: 3,
+        fontSize: 14.5,
+        color: "#3a3938",
+        fontFamily: Platform.OS === "android" ? "Roboto-Medium" : "Roboto-Medium"
+    },
+    h2: {
+        color: "#666",
+        fontSize: 14
     }
   });

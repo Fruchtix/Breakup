@@ -31,8 +31,8 @@ export default function WeekPreview(props) {
     return (
         <View style={[styles.container, styles.shadow]}>
             <View style={{paddingHorizontal: 15, paddingBottom: 10}}>
-                <Text>Woche {props.week}</Text>
-                <Text>{props.description}</Text>
+                <Text style={styles.h1}>Woche {props.week}</Text>
+                <Text style={styles.h2}>{props.description}</Text>
 
                 {showDetails ? 
                 <View style={{marginTop: 30}}>
@@ -94,5 +94,15 @@ const styles = StyleSheet.create({
     },
     doneCount: {
         color: "#666"
+    },
+    h1: {
+        marginBottom: 3,
+        color: "#3a3938",
+        fontSize: 17,
+        fontFamily: Platform.OS === "android" ? "Roboto-Medium" : "Roboto-Medium"
+    },
+    h2: {
+        color: "#444",
+        fontSize: 14
     }
   });

@@ -142,7 +142,7 @@ export default function HomeScreen(props) {
                                 SplashScreen.hide(); // Image is fully presented, instruct SplashScreen to hide
                             }}
                         />
-                        <Text style={styles.abouth2}>Prof. Dr. Breakup</Text>
+                        <Text style={styles.abouth2}>Breakup Programm</Text>
                         <Text style={[styles.aboutTxt, {marginBottom: 11}]}>Breakup ist eine wirklich tolle app, das musst du jetzt einfach glauben! Bitte gib mir dein Geld, Danke!</Text>
                         <Text style={styles.aboutTxt}>Der Wunsch deine Trennung zu heilen ist fucking groß. Also worauf waretst du?! Kauf dir jetzt alles und morgen bist du wieder die Glücklichkeit in Person. Dafür stehe ich mit meinem Namen, 'Herr Breakup'.</Text>
 
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fefffe',
-      paddingTop: 28,
+      paddingTop: Platform.OS === "ios" ? 35 : 25,
     },
     btn: {
         borderRadius: 20,
@@ -201,7 +201,8 @@ const styles = StyleSheet.create({
         textTransform: "uppercase",
         color: "#f9f7f3",
         paddingLeft: 5,
-        fontWeight: "bold"
+        fontWeight: "700",
+        // fontSize: 14
     },
     headerImage: {
         width: "100%",
@@ -232,7 +233,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         paddingHorizontal: 27,
         marginBottom: 17,
-        color: "#3a3938"
+        color: "#3a3938",
     },
     h1: {
         color: "#fefffe",
@@ -265,11 +266,16 @@ const styles = StyleSheet.create({
         paddingBottom: 20
     },
     aboutTxt: {
-        textAlign: "center"
+        textAlign: "center",
+        color: "#444",
+        fontSize: 14
     },
     abouth2: {
         marginTop: 10,
-        marginBottom: 10
+        marginBottom: 10,
+        fontSize: 14.5,
+        color: "#3a3938",
+        fontFamily: Platform.OS === "android" ? "Roboto-Medium" : "Roboto-Medium"
     },
     abouth1: {
 
@@ -380,9 +386,9 @@ const styles = StyleSheet.create({
         textTransform: "uppercase"
     },
     headline: {
-        fontSize: 21,
+        fontSize: 23,
         color: "#5A6176",
-        lineHeight: 32,
+        lineHeight: 31,
     },
     ios: {
         overflow: "hidden"

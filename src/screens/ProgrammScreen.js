@@ -60,9 +60,10 @@ const styles = StyleSheet.create({
     },
     headline: {
         color: "#3a3938",
-        fontSize: 20,
+        fontSize: 23,
         textAlign: "center",
-        marginBottom: 10
+        marginBottom: 10,
+        // fontFamily: Platform.OS === "android" ? "Roboto-Medium" : "Roboto-Medium"
     },
     content: {
         marginTop: 30

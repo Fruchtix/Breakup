@@ -14,6 +14,7 @@
     "expo-av": "^8.1.0",
     "expo-font": "^8.1.0",
     "expo-in-app-purchases": "~8.1.0",
+    "expo-linear-gradient": "~8.1.0",
     "firebase": "^7.9.0",
     "lodash": "^4.17.15",
     "react": "~16.9.0",
@@ -26,13 +27,13 @@
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
-    "react-native-svg": "11.0.1",
+    "react-native-svg": "^11.0.1",
+    "react-native-unimodules": "^0.9.0",
     "react-native-web": "~0.11.7",
     "react-native-webview": "^8.1.1",
     "react-navigation": "^4.3.7",
     "react-navigation-stack": "^2.3.11",
-    "react-navigation-tabs": "^2.8.11",
-    "expo-linear-gradient": "~8.1.0"
+    "react-navigation-tabs": "^2.8.11"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.1.0",

@@ -6,6 +6,7 @@ import * as firebase from 'firebase'
 import 'firebase/firestore'
 import { Audio } from 'expo-av';
 import {Feather as Icon} from '@expo/vector-icons'
+import CircleSlider from '../components/CircleSlider'
 
 export default class PlayLessonScreen extends Component {
     constructor() {
@@ -19,7 +20,8 @@ export default class PlayLessonScreen extends Component {
             currentPosition: 0,
             unlockNext: false,
             currentPositionSec: 0,
-            changePositionAvalable: true
+            changePositionAvalable: true,
+            circlePosition: 90
         }
     }
 
@@ -199,23 +201,28 @@ export default class PlayLessonScreen extends Component {
         }
       };
 
-      changePosition = (type) => {
-        if(this.soundObject !== null && this.state.changePositionAvalable) {
-            try {
-                if(this.didMount) {
-                    this.setState({changePositionAvalable: false})
+      changePosition = (value) => {
+        if(value !== this.state.circlePosition) {
+            this.changePosition("-- ", value)
+            if(this.soundObject !== null && this.state.changePositionAvalable) {
+                try {
+                    if(this.didMount) {
+                        this.setState({changePositionAvalable: false,currentPosition: (value/365) * 100})
+                    }
+                    setTimeout(() => {if(this.didMount) {this.setState({changePositionAvalable: true})}}, 1000)
+                } catch(e) {
+    
                 }
-                if(type === "forward") {
-                    // this.soundObject.setStatusAsync({ shouldPlay: true, positionMillis: this.state.currentPositionSec + 10000 })
-                    this.soundObject.playFromPositionAsync(this.state.currentPositionSec + 10000)
-                } else {
-                    this.soundObject.playFromPositionAsync(this.state.currentPositionSec - 10000)
-                }
-                setTimeout(() => {if(this.didMount) {this.setState({changePositionAvalable: true})}}, 1000)
-            } catch(e) {
-
             }
         }
+    }
+
+    time_convert(timestamp) {
+        var hours = Math.floor(timestamp / 60 / 60);
+        var minutes = Math.floor(timestamp / 60) - (hours * 60);
+        var seconds = timestamp % 60;
+
+        return (minutes < 10 ? "0"+minutes : minutes) + ":" + (seconds < 10 ? "0"+seconds : seconds)
     }
 
     render() {
@@ -227,9 +234,9 @@ export default class PlayLessonScreen extends Component {
                 <View style={styles.content}>
                     <View style={styles.header}>
                         <TouchableWithoutFeedback
-                            hitSlop={{top: 7, right: 7, left: 7, bottom: 7}}
+                            hitSlop={{top: 10, right: 10, left: 10, bottom: 10}}
                             onPress={() => this.props.navigation.goBack()}>
-                            <Icon name="x" size={26} color="#fff" />
+                            <Icon name="x" size={27} color="#fefffe" />
                         </TouchableWithoutFeedback>
                     </View>
 
@@ -237,15 +244,32 @@ export default class PlayLessonScreen extends Component {
                         <Text style={styles.subHeadline}>{headline}</Text>
                     </View> */}
 
-                    <View style={{flex: 2.5, justifyContent: "center", alignItems: "center"}}>
+                    <View style={{flex: 2.4, justifyContent: "center", alignItems: "center"}}>
                         {/* <Text style={styles.headline}>{description}</Text> */}
                         <Text style={styles.subHeadline}>{headline}</Text>
                     </View>
 
                     <View style={{flexDirection: "row", alignItems: "center"}}>
-                        <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "flex-end", marginRight: 23}} /*onPress={() => this.changePosition("rewind")}*/>
+                        {/* <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "flex-end", marginRight: 23}} onPress={() => this.changePosition("rewind")}>
                             <Icon name="rewind" size={25} color="#fff" />
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
+
+                        {/* <View style={styles.slider}>
+                            <CircleSlider
+                                value={this.state.circlePosition}
+                                textColor={"transparent"}
+                                onValueChange={(value) => this.changePosition(value)}
+                                strokeColor={"transparent"}
+                                strokeWidth={10}
+                                fillColor={"none"}
+                                // meterColor={"none"}
+                                dialWidth={30}
+                                dialRadius={60}
+                                btnRadius={40}
+                                // xCenter={Math.round(this.state.currentPosition)}
+                                // yCenter={Math.round(this.state.currentPosition)}
+                            />
+                        </View> */}
 
                         <AnimatedCircularProgress
                             size={125}
@@ -267,14 +291,16 @@ export default class PlayLessonScreen extends Component {
                             }
                         </AnimatedCircularProgress>
 
-                        <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "center", marginLeft: 23}} /*onPress={() => this.changePosition("forward")}*/>
+                        {/* <TouchableOpacity hitSlop={{top: 7, right: 7, left: 7, bottom: 7}} style={{justifyContent: "center", marginLeft: 23}} onPress={() => this.changePosition("forward")}>
                             <Icon name="fast-forward" size={25} color="#fff" />
-                        </TouchableOpacity>
+                        </TouchableOpacity> */}
                     </View>
 
-                    <View style={{marginTop: 20, flex: 3, justifyContent: "flex-start", alignItems: "center"}}>
-                        <Text>
-                        </Text>
+                    <View style={{paddingBottom: "15%", flex: 3.3, justifyContent: "center", alignItems: "center"}}>
+                        <Text style={styles.currentTime}>{(this.time_convert(Math.round(this.state.currentPositionSec/1000)))}</Text>
+                        <View style={styles.timeContainer}>
+                            <Text style={styles.timeTxt}>{Math.round(this.state.audioLength)} MIN.</Text>
+                        </View>
                     </View>
                 </View>
             </ImageBackground>
@@ -301,7 +327,7 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         width: "100%",
         paddingHorizontal: 18,
-        marginTop: Platform.OS === 'android' ? 35 : 50,
+        marginTop: Platform.OS === 'android' ? 38 : 50,
     },
     buttonInnerWrapper: {
         width: 110,
@@ -313,11 +339,13 @@ const styles = StyleSheet.create({
     },
     headline: {
         fontSize: 28,
-        color: "#fff",
+        color: "green",
     },
     subHeadline: {
         fontSize: 18,
-        color: "#fff",
+        color: "#faf7f2",
+        // color: "#3a3938",
+        fontFamily: Platform.OS === "android" ? "Roboto-Medium" : "Roboto-Medium"
     },
     content: {
         alignItems: "center",
@@ -326,4 +354,25 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(52, 52, 52, 0.8)',
         flex: 1
     },
+    timeContainer: {
+        borderWidth: 2,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 5,
+        borderColor: "#d4d4d4"
+    },
+    timeTxt: {
+        color: "#d4d4d4",
+        letterSpacing: 1,
+        fontSize: 15
+    },
+    currentTime: {
+        marginBottom: 40,
+        color: "#d4d4d4",
+        letterSpacing: 0.9
+    },
+    slider: {
+        position: "absolute",
+        right: "-10%"
+    }
   });

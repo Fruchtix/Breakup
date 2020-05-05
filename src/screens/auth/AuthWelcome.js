@@ -115,18 +115,19 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     headlineWrapper: {
-        alignItems: "center"
+        alignItems: "center",
     },
     headline: {
         fontSize: 25,
         color: "#5A6176",
-        lineHeight: 30
+        lineHeight: 30,
+        // fontFamily: "Avenir"
     },
     logo: {
         fontSize: 26,
         paddingHorizontal: 27,
         marginBottom: 17,
-        color: "#3a3938"
+        color: "#3a3938",
     },
     buyButton: {
         borderRadius: 50,

@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     btnText: {
         color: "#fff",
         fontSize: 14,
-        letterSpacing: 1
+        letterSpacing: 1,
     },
     documents: {
         flexDirection: 'row',

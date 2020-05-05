@@ -26,12 +26,11 @@ export default function HelpScreen(props) {
                 <View style={styles.content}>
                     {
                         helpLessons.map((subject) => {
-                            return <View key={subject.id}>
+                            return <View style={{marginBottom: 13}} key={subject.id}>
                                         <Text style={styles.subject}>{subject.subject}</Text>
                                         {
                                             subject.lessons.map((lesson) => {
-                                                return <LessonPreview 
-                                                            key={lesson.id}
+                                                return <View key={lesson.id} style={{marginBottom: 3}} ><LessonPreview 
                                                             id={lesson.id}
                                                             free={lesson.free}
                                                             headline={lesson.headline}
@@ -40,7 +39,7 @@ export default function HelpScreen(props) {
                                                             navigation={props.navigation}
                                                             weekId={subject.id}
                                                             premium={props.screenProps.premium}
-                                                        />
+                                                        /></View>
                                             })
                                         }
                                     </View>
@@ -89,8 +88,10 @@ const styles = StyleSheet.create({
         marginHorizontal: "10%",
     },
     subject: {
-        marginBottom: 5,
-        fontSize: 20
+        marginBottom: 15,
+        fontSize: 20,
+        color: "#3a3938",
+        fontFamily: Platform.OS === "android" ? "Roboto-Medium" : "Roboto-Medium"
     },
     shadow: {
         shadowColor: "#000",
