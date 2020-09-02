@@ -5,6 +5,7 @@ import LessonPreview from './LessonPreview'
 import * as firebase from 'firebase'
 import 'firebase/firestore'
 import * as Progress from 'react-native-progress';
+import Download from '../components/Download'
 
 export default function WeekPreview(props) {
     const [showDetails, setShowDetails] = useState(false)
@@ -35,24 +36,30 @@ export default function WeekPreview(props) {
                 <Text style={styles.h2}>{props.description}</Text>
 
                 {showDetails ? 
-                <View style={{marginTop: 30}}>
-                    {
-                        props.lessons.map((lesson, index) => {
-                            return <LessonPreview 
-                                        key={index}
-                                        id={lesson.id}
-                                        weekId={props.id}
-                                        free={lesson.free}
-                                        headline={lesson.headline}
-                                        description={lesson.description}
-                                        currentExercise={currentExercise+1}
-                                        navigation={props.navigation}
-                                        reload={() => reload()}
-                                        premium={props.premium}
-                                    />
-                        })
-                    }
-                </View> 
+                <View>
+                    <View style={{marginTop: 5}}>
+                        <Download week={props.week} count={props.totalExercise} />
+                    </View>
+
+                    <View style={{marginTop: 20}}>
+                        {
+                            props.lessons.map((lesson, index) => {
+                                return <LessonPreview 
+                                            key={index}
+                                            id={lesson.id}
+                                            weekId={props.id}
+                                            free={lesson.free}
+                                            headline={lesson.headline}
+                                            description={lesson.description}
+                                            currentExercise={currentExercise+1}
+                                            navigation={props.navigation}
+                                            reload={() => reload()}
+                                            premium={props.premium}
+                                        />
+                            })
+                        }
+                    </View> 
+                </View>
                 : null }
 
                 <View style={{alignItems: "center", marginTop: 15}}>

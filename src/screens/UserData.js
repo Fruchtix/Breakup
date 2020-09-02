@@ -41,7 +41,7 @@ export default function UserData(props) {
             <View style={{flex: 1, marginHorizontal: 50}}>
                 <Text style={styles.headline}>Email ändern</Text>
                 <View style={styles.inputData}>
-                    <Text style={styles.textLabel}>Email</Text>
+                    <Text style={styles.textLabel}>Neue Email</Text>
                     <TextInput 
                             autoFocus={true}
                             style={styles.input}

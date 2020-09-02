@@ -33,7 +33,7 @@ export default function AuthWelcome(props) {
 
             <View style={styles.buttons}>
                 <TouchableWithoutFeedback style={{alignItems: "center", justifyContent: "center"}} onPress={() => props.navigation.navigate("AuthPassword")}>
-                    <View style={[styles.shadow, {marginBottom: 12}]}>
+                    <View style={[styles.shadow, {marginBottom: 14}]}>
                         <View style={[styles.buyButton, styles.shadow]}>
                             <Text style={styles.btnTxt}>Jetzt registrieren</Text>
                             {/* <Icon name="chevron-right" size={23} color="#f9f7f3" /> */}

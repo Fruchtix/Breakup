@@ -7,11 +7,13 @@ import 'firebase/firestore'
 import { Audio } from 'expo-av';
 import {Feather as Icon} from '@expo/vector-icons'
 import CircleSlider from '../components/CircleSlider'
+import { Circle } from 'react-native-svg'
+import * as FileSystem from 'expo-file-system';
 
 export default class PlayLessonScreen extends Component {
     constructor() {
         super()
-        didMount = false;
+        this.didMount = false;
         this.soundObject = null;
         this.state = {
             isPlaying: false,
@@ -21,7 +23,7 @@ export default class PlayLessonScreen extends Component {
             unlockNext: false,
             currentPositionSec: 0,
             changePositionAvalable: true,
-            circlePosition: 90
+            circlePosition: 90,
         }
     }
 
@@ -42,26 +44,48 @@ export default class PlayLessonScreen extends Component {
             playsInSilentModeIOS: true,
             shouldDuckAndroid: true,
             interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-            playThroughEarpieceAndroid: true
+            playThroughEarpieceAndroid: false
           });
 
+        this.checkDownloaded()
+    }
+
+    checkDownloaded = () => {
         const lessonId = this.props.navigation.getParam("id")
         const weekId = this.props.navigation.getParam("weekId")
 
-        // Get Audio
+        FileSystem.getInfoAsync(FileSystem.documentDirectory + `${weekId}` + `${lessonId}.wav`)
+            .then((promise) => {
+                if(promise.exists) {
+                    console.log("downloaded")
+                    this.getExeciseFromUrl({uri: promise.uri})
+                } else {
+                    console.log("nicht downloaded")
+                    this.getUrl()
+                }
+            })
+            .catch((promise) => {
+                console.log("error")
+            })
+    }
+
+    getUrl = () => {
+        const lessonId = this.props.navigation.getParam("id")
+        const weekId = this.props.navigation.getParam("weekId")
+
         var storage = firebase.storage();
         var pathReference = storage.ref(`Audios/${weekId}/${lessonId}.wav`);
-        pathReference.getDownloadURL().then((url) => {
-        //   console.log(url)
-          if(this.didMount) {
-              this.setState({audio: {uri: url}})
-          }
-
-          this.getExeciseFromUrl({uri: url})
-        }).catch((error) => {
-          console.log("error")
+        pathReference.getDownloadURL()
+            .then((url) => {
+                if(this.didMount) {
+                    this.setState({audio: {uri: url}})
+                }
+                this.getExeciseFromUrl({uri: url})
+            })
+            .catch((error) => {
+                console.log("error")
         });
-      }
+    }
 
     getExeciseFromUrl = async(audio) => {
         try {
@@ -180,8 +204,12 @@ export default class PlayLessonScreen extends Component {
                         this.setState({unlockNext: true})
                     }
                     if(weekId < 99) {
-                        await Promise.all([this.pushToHistory(), this.unlockNext()]) 
-                        reload()
+                        try {
+                            await Promise.all([this.pushToHistory(), this.unlockNext()]) 
+                            reload()
+                        } catch(e) {
+
+                        }
                     } 
                 }
           } else {
@@ -256,9 +284,9 @@ export default class PlayLessonScreen extends Component {
 
                         {/* <View style={styles.slider}>
                             <CircleSlider
-                                value={this.state.circlePosition}
+                                // value={this.state.circlePosition}
                                 textColor={"transparent"}
-                                onValueChange={(value) => this.changePosition(value)}
+                                // onValueChange={(value) => this.changePosition(value)}
                                 strokeColor={"transparent"}
                                 strokeWidth={10}
                                 fillColor={"none"}
@@ -266,8 +294,8 @@ export default class PlayLessonScreen extends Component {
                                 dialWidth={30}
                                 dialRadius={60}
                                 btnRadius={40}
-                                // xCenter={Math.round(this.state.currentPosition)}
-                                // yCenter={Math.round(this.state.currentPosition)}
+                                xCenter={this.state.x}
+                                yCenter={this.state.y}
                             />
                         </View> */}
 
@@ -277,6 +305,7 @@ export default class PlayLessonScreen extends Component {
                             rotation={0}
                             fill={this.state.currentPosition}
                             tintColor="#5A6175"
+                            // renderCap={({ center }) => this.setState({x: center.x, y: center.y})}
                             onAnimationComplete={this.state.currentPosition===100? () => setTimeout(() => this.props.navigation.goBack(), 800): () => {}}
                             style={{alignItems: "center",justifyContent: "center"}}
                             backgroundColor="#d4d4d4">

@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, ScrollView, Image, ImageBackground, Platform } from 'react-native'
 import helpLessons from '../data/help.json'
 import LessonPreview from '../components/LessonPreview'
+import Download from '../components/Download'
 
 export default function HelpScreen(props) {
     return (
@@ -26,7 +27,7 @@ export default function HelpScreen(props) {
                 <View style={styles.content}>
                     {
                         helpLessons.map((subject) => {
-                            return <View style={{marginBottom: 13}} key={subject.id}>
+                            return <View style={{marginBottom: 20}} key={subject.id}>
                                         <Text style={styles.subject}>{subject.subject}</Text>
                                         {
                                             subject.lessons.map((lesson) => {
@@ -42,6 +43,9 @@ export default function HelpScreen(props) {
                                                         /></View>
                                             })
                                         }
+                                        <View style={{marginTop: -10}}>
+                                            <Download name={subject.subject} week={subject.id+1} count={subject.lessons.length} />
+                                        </View>
                                     </View>
                         })
                     }

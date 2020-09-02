@@ -16,6 +16,7 @@ import BuyModal from '../screens/BuyModal'
 import LawWebsite from '../screens/LawWebsite'
 import Notifications from "../screens/Notifications"
 import UserData from '../screens/UserData'
+import ChangeUserData from '../screens/ChangeUserData'
 
 const MainContainer = createBottomTabNavigator({
     HomeScreen: {
@@ -72,7 +73,8 @@ const StackContainer = createStackNavigator({
   BuyModal,
   LawWebsite,
   Notifications,
-  UserData
+  UserData,
+  ChangeUserData
 }, {
   initialRouteName: "MainContainer",
   headerMode: "none",

@@ -25,7 +25,7 @@ export default class LawWebsite extends Component {
                 <View style={{backgroundColor: "#EBE7E4"}}>
                     <ActivityIndicator size="small" color="#333" /> 
                 </View> : null } 
-                    <WebView source={{ uri: `https://sites.google.com/view/eyeyogawebsite/${type}` }} onLoad={() => this.setState({loading: false})} />
+                    <WebView source={{ uri: `https://sites.google.com/view/breakup-app/${type}` }} onLoad={() => this.setState({loading: false})} />
             </View>
         )
     }

@@ -10,16 +10,6 @@ export default function ProfileScreen(props) {
                 <Text style={styles.name}>Profil</Text>
             </View>
 
-            <TouchableWithoutFeedback onPress={() => {
-                firebase.auth().signOut().then(function() {
-                    // Sign-out successful.
-                  }, function(error) {
-                    // An error happened.
-                  });
-            }}>
-                <Text>Ausloggen</Text>
-            </TouchableWithoutFeedback>
-
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View>
                     <Image
@@ -34,7 +24,7 @@ export default function ProfileScreen(props) {
                         <Text style={styles.lineh1}>Profil</Text>
                     </View>
 
-                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate("UserData")}>
+                    <TouchableWithoutFeedback onPress={() => props.navigation.navigate("ChangeUserData")}>
                         <View style={styles.line}>
                             <View style={styles.row}>
                                 <Icon name="user" size={26} color="#5A6176" style={{marginRight: 15}} />

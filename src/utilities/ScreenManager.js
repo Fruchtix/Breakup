@@ -19,7 +19,7 @@ class ScreenManager extends React.Component {
           emailVerified: false,
           fontLoaded: false,
           name: '',
-          premium: null
+          premium: false
       }
 
       //To supress the "Setting a Timer" warning
@@ -37,6 +37,7 @@ class ScreenManager extends React.Component {
     }
 
     componentDidMount() {
+      console.log("hallo")
       this.checkIfloggedIn()
       Font.loadAsync({
         // 'Avenir': require('../../assets/fonts/AvenirLTStd-Medium.otf'),
@@ -51,8 +52,8 @@ class ScreenManager extends React.Component {
                 .then(async(doc) => {
                     if (doc.exists) {
                         // this.setState({name: doc.data().first})
-                        await Promise.all([this.connectToPayment()])
-                        this.setPurchaseListener()
+                        // await Promise.all([this.connectToPayment()])
+                        // this.setPurchaseListener()
                         this.setState({loggedInStatus: 'loggedIn', emailVerified: user.emailVerified})
                     } else {
                         this.setState({loggedInStatus: 'loggedOut'})
@@ -133,13 +134,15 @@ class ScreenManager extends React.Component {
   
     render() {
       if (this.state.loggedInStatus === 'loggedIn' && this.state.fontLoaded) {
+        console.log("ready")
         return (
           <View style={styles.safeArea}>
             <MainNavigator screenProps={{name: this.state.name, premium: this.state.premium}} />
           </View>
         )
-    }
-    else if (this.state.loggedInStatus === 'loggedOut' && this.state.fontLoaded) {
+      }
+      else if (this.state.loggedInStatus === 'loggedOut' && this.state.fontLoaded) {
+        console.log("ready2")
         return (
             <AuthNavigator />
         )

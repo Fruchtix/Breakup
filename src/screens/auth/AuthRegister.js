@@ -103,7 +103,7 @@ export default class AuthRegister extends Component {
                     <View style={styles.submitBtnWrapper}>
                         <TouchableOpacity 
                             style={[styles.submitBtn, !(validate("email", this.state.email)) ? {backgroundColor: "#bdbfc8"} : {backgroundColor: "#5A6174"}]}
-                            disabled={!(validate("email", this.state.email))}
+                            disabled={!(validate("email", this.state.email)) || this.state.showActivityIndicator}
                             onPress={() => {this.createUser(this.state.email, password), Keyboard.dismiss()}}>
                                     {this.state.showActivityIndicator ? <ActivityIndicator color="#333" /> : null}
                                     <Text style={styles.btnText}> Registrierung abschließen</Text>

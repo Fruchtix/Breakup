@@ -56,7 +56,7 @@ export default class BuyModal extends Component {
                         <View style={{borderBottomWidth: 1, alignItems: "center", paddingBottom: 3, paddingTop: 14, borderBottomColor: "#413d45"}}>
                             <Text style={styles.h1}>Breakup-Programm</Text>
                         </View>
-                            <Text style={styles.h2}>29,99 € <Text style={styles.h3}>(einmalig)</Text></Text>
+                            <Text style={styles.h2}>9,99 € <Text style={styles.h3}>(einmalig)</Text></Text>
 
                                 {/* Vorteile von EyeYoga */}
                                 <View style={{marginBottom: 35, alignItems: "flex-start"}}>
@@ -103,13 +103,17 @@ export default class BuyModal extends Component {
                                     <Text style={[styles.agb, {marginTop: 12}]}>Datenschutzbestimmungen</Text>
                                 </TouchableOpacity>
 
-                                <View style={{flexDirection: "row", justifyContent: "center"}}>
+                                <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                                     <TouchableOpacity onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "impressum"})}}>
                                         <Text style={[styles.agb, {marginRight: 15}]}>Impressum</Text>
                                     </TouchableOpacity>
 
                                     <TouchableOpacity onPress={() => {this.props.navigation.navigate("LawWebsite", {type: "agb"})}}>
-                                        <Text style={styles.agb}>AGB</Text>
+                                        <Text style={[styles.agb, {marginRight: 15}]}>AGB</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity onPress={() => {}}>
+                                        <Text style={styles.agb}>Restore</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
